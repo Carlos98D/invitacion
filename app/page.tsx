@@ -1,54 +1,54 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, MessageCircle, Volume2, VolumeX } from "lucide-react"
 
-// Componente de Osito SVG Reutilizable
+// Ilustración de Osito SVG Sobria
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
       {/* Orejas */}
-      <circle cx="55" cy="55" r="28" fill="#C68A54" />
-      <circle cx="55" cy="55" r="16" fill="#F4E3D3" />
-      <circle cx="145" cy="55" r="28" fill="#C68A54" />
-      <circle cx="145" cy="55" r="16" fill="#F4E3D3" />
+      <circle cx="55" cy="55" r="28" fill="#B8860B" opacity="0.8" />
+      <circle cx="55" cy="55" r="16" fill="#FDFBF7" />
+      <circle cx="145" cy="55" r="28" fill="#B8860B" opacity="0.8" />
+      <circle cx="145" cy="55" r="16" fill="#FDFBF7" />
 
       {/* Cabeza */}
-      <circle cx="100" cy="100" r="65" fill="#D99B62" />
+      <circle cx="100" cy="100" r="65" fill="#C59B6C" />
 
       {/* Ojos */}
-      <circle cx="75" cy="90" r="6.5" fill="#2C1810" />
-      <circle cx="125" cy="90" r="6.5" fill="#2C1810" />
-      <circle cx="77" cy="88" r="2.5" fill="#FFFFFF" />
-      <circle cx="127" cy="88" r="2.5" fill="#FFFFFF" />
+      <circle cx="75" cy="90" r="6" fill="#2A2421" />
+      <circle cx="125" cy="90" r="6" fill="#2A2421" />
+      <circle cx="77" cy="88" r="2" fill="#FFFFFF" />
+      <circle cx="127" cy="88" r="2" fill="#FFFFFF" />
 
       {/* Hocico */}
-      <ellipse cx="100" cy="115" rx="26" ry="20" fill="#F9EFE6" />
-      <ellipse cx="100" cy="106" rx="9" ry="6" fill="#2C1810" />
+      <ellipse cx="100" cy="115" rx="24" ry="18" fill="#FDFBF7" />
+      <ellipse cx="100" cy="106" rx="8" ry="5" fill="#2A2421" />
       <path
-        d="M 100 112 C 100 120, 92 124, 88 120 M 100 112 C 100 120, 108 124, 112 120"
-        stroke="#2C1810"
-        strokeWidth="3"
+        d="M 100 111 C 100 118, 93 122, 89 118 M 100 111 C 100 118, 107 122, 111 118"
+        stroke="#2A2421"
+        strokeWidth="2.5"
         strokeLinecap="round"
       />
 
-      {/* Mejillas */}
-      <circle cx="62" cy="105" r="8" fill="#E89B88" opacity="0.45" />
-      <circle cx="138" cy="105" r="8" fill="#E89B88" opacity="0.45" />
+      {/* Mejillas sutiles */}
+      <circle cx="62" cy="105" r="7" fill="#D9A08B" opacity="0.35" />
+      <circle cx="138" cy="105" r="7" fill="#D9A08B" opacity="0.35" />
     </svg>
   )
 }
 
-// Icono de Huellita de Oso
+// Icono de Huellita Elegante
 function BearPawIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" className={className} fill="currentColor">
-      <ellipse cx="50" cy="65" rx="22" ry="18" />
-      <circle cx="28" cy="38" r="7" />
-      <circle cx="42" cy="30" r="7" />
-      <circle cx="58" cy="30" r="7" />
-      <circle cx="72" cy="38" r="7" />
+      <ellipse cx="50" cy="65" rx="20" ry="16" />
+      <circle cx="28" cy="40" r="6" />
+      <circle cx="42" cy="32" r="6" />
+      <circle cx="58" cy="32" r="6" />
+      <circle cx="72" cy="40" r="6" />
     </svg>
   )
 }
@@ -57,6 +57,24 @@ export default function Invitacion() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  // Intenta reproducir la música inmediatamente al cargar la página
+  useEffect(() => {
+    const startAudio = () => {
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true)
+        }).catch(() => {
+          // El navegador bloquea la reproducción sin previa interacción
+        })
+      }
+    }
+
+    startAudio()
+    // Evento de respaldo: activa audio al primer clic en cualquier lugar del sitio
+    window.addEventListener("click", startAudio, { once: true })
+    return () => window.removeEventListener("click", startAudio)
+  }, [isPlaying])
 
   const toggleMusic = () => {
     if (audioRef.current) {
@@ -72,19 +90,19 @@ export default function Invitacion() {
 
   const handleOpenEnvelope = () => {
     setIsOpen(true)
-    // Comienza a sonar automáticamente al abrir la invitación
     if (audioRef.current) {
       audioRef.current.play().then(() => {
         setIsPlaying(true)
-      }).catch(() => {
-        // En caso de que el navegador pida interacción previa
-      })
+      }).catch(() => {})
     }
   }
 
+  // URL directa de WhatsApp con tu número y mensaje formateado
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=5215536975513&text=Confirmo%20mi%20asistencia`
+
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#1c1917] p-2 font-sans text-neutral-800 md:p-6 overflow-hidden">
-      {/* Elemento de audio */}
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#181615] p-2 font-sans text-[#2A2421] md:p-6 overflow-hidden">
+      {/* Audio oculto */}
       <audio
         ref={audioRef}
         src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
@@ -92,188 +110,199 @@ export default function Invitacion() {
         preload="auto"
       />
 
-      {/* Botón flotante para pausar / activar música */}
+      {/* Botón Flotante para Silenciar/Activar Música */}
       <button
         onClick={toggleMusic}
-        className="fixed top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/80 text-white shadow-lg backdrop-blur-md transition-transform active:scale-95 hover:bg-amber-600"
-        title={isPlaying ? "Silenciar música" : "Reproducir música"}
+        className="fixed top-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/30 bg-[#2A2421]/80 text-amber-100 shadow-2xl backdrop-blur-md transition-all active:scale-95 hover:bg-amber-900/80 hover:text-white"
+        title={isPlaying ? "Silenciar música" : "Activar música"}
       >
-        {isPlaying ? <Volume2 className="h-5 w-5 animate-pulse" /> : <VolumeX className="h-5 w-5" />}
+        {isPlaying ? <Volume2 className="h-5 w-5 animate-pulse text-amber-400" /> : <VolumeX className="h-5 w-5 text-neutral-400" />}
       </button>
 
-      {/* Efecto de Luz de Fondo */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-neutral-950 to-neutral-950 pointer-events-none" />
+      {/* Fondo con brillo sutil */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-950/30 via-[#181615] to-[#110f0e] pointer-events-none" />
 
       <AnimatePresence mode="wait">
         {!isOpen ? (
           /* =========================================================
-             VISTA 1: SOBRE CERRADO
+             VISTA 1: SOBRE ELEGANTE
              ========================================================= */
           <motion.div
             key="envelope-view"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05, y: -20 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: -20 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative z-10 flex flex-col items-center justify-center px-4"
           >
             <motion.p
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="mb-4 flex items-center gap-2 font-serif text-sm italic tracking-widest text-amber-200/90"
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ repeat: Infinity, duration: 3 }}
+              className="mb-5 flex items-center gap-2 font-serif text-xs uppercase tracking-[0.3em] text-amber-300/90"
             >
-              <Sparkles className="h-4 w-4 text-amber-400" />
-              Tienes una invitación especial
-              <Sparkles className="h-4 w-4 text-amber-400" />
+              <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+              Invitación Exclusiva
+              <Sparkles className="h-3.5 w-3.5 text-amber-400" />
             </motion.p>
 
             <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ y: -4 }}
+              whileTap={{ scale: 0.98 }}
               onClick={handleOpenEnvelope}
-              className="group relative flex w-full max-w-sm flex-col items-center overflow-hidden rounded-3xl border border-amber-300/40 bg-gradient-to-b from-[#FAF8F5] via-[#F5EFE6] to-[#EADBC8] p-8 text-center shadow-[0_20px_50px_rgba(217,119,6,0.2)] transition-all duration-300 hover:border-amber-400"
+              className="group relative flex w-full max-w-sm flex-col items-center overflow-hidden rounded-3xl border border-amber-200/30 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#E8DDD1] p-8 text-center shadow-[0_25px_60px_rgba(0,0,0,0.6)] transition-all duration-300"
             >
-              <div className="absolute top-0 h-2 w-32 rounded-b-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 shadow-md" />
+              <div className="absolute top-0 h-1.5 w-28 rounded-b-full bg-amber-600/80 shadow-sm" />
 
-              <div className="absolute top-4 left-4 text-amber-900/10 rotate-[-20deg]">
-                <BearPawIcon className="h-6 w-6" />
+              <div className="absolute top-4 left-4 text-amber-900/10 rotate-[-15deg]">
+                <BearPawIcon className="h-7 w-7" />
               </div>
-              <div className="absolute top-4 right-4 text-amber-900/10 rotate-[20deg]">
-                <BearPawIcon className="h-6 w-6" />
+              <div className="absolute top-4 right-4 text-amber-900/10 rotate-[15deg]">
+                <BearPawIcon className="h-7 w-7" />
               </div>
 
-              <div className="relative my-4 flex h-36 w-36 items-center justify-center rounded-full bg-amber-100/80 p-4 shadow-inner ring-4 ring-amber-200/50">
+              <div className="relative my-5 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100/80 to-amber-200/50 p-4 shadow-inner ring-1 ring-amber-300/40">
                 <BearIllustration />
-                <div className="absolute bottom-1 right-1 rounded-full bg-amber-500 p-1.5 text-white shadow-md">
-                  <Heart className="h-4 w-4 fill-current" />
+                <div className="absolute bottom-1 right-1 rounded-full bg-amber-800 p-2 text-amber-100 shadow-md">
+                  <Heart className="h-3.5 w-3.5 fill-current" />
                 </div>
               </div>
 
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-800/80">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-amber-900/70">
                 Nuestra Pequeña
               </p>
-              <h2 className="my-1 font-serif text-xl font-bold uppercase tracking-wide text-neutral-800">
+              <h2 className="my-1.5 font-serif text-xl font-bold tracking-wide text-[#2A2421]">
                 Bautizo &amp; Primer Cumpleaños
               </h2>
               <p className="text-xs font-medium text-neutral-500">Sábado 14 de Noviembre</p>
 
-              <div className="mt-6 flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-amber-500/30 group-hover:from-amber-600 group-hover:to-amber-700">
-                <MailOpen className="h-4 w-4" />
+              <div className="mt-7 flex items-center gap-2.5 rounded-full bg-[#2A2421] px-7 py-3 text-xs font-semibold tracking-widest uppercase text-amber-100 shadow-xl transition-all group-hover:bg-amber-900">
+                <MailOpen className="h-4 w-4 text-amber-400" />
                 Abrir Invitación
               </div>
             </motion.button>
           </motion.div>
         ) : (
           /* =========================================================
-             VISTA 2: INVITACIÓN ABIERTA
+             VISTA 2: TARJETA / SITIO SOBRIO Y ELEGANTE
              ========================================================= */
           <motion.main
             key="invitation-view"
-            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border border-amber-200/50 bg-[#FAF8F5] px-6 py-8 shadow-2xl md:min-h-[850px] md:max-h-[900px] md:rounded-3xl"
+            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border border-amber-200/30 bg-[#FDFBF7] px-7 py-8 shadow-2xl md:min-h-[860px] md:max-h-[920px] md:rounded-3xl"
           >
+            {/* Cerrar sobre */}
             <button
               onClick={() => setIsOpen(false)}
-              className="self-end rounded-full bg-amber-100/80 px-3 py-1 text-[10px] font-semibold text-amber-800 transition-colors hover:bg-amber-200"
+              className="self-end rounded-full bg-amber-100/60 px-3 py-1 text-[10px] font-medium tracking-wider text-amber-900 transition-colors hover:bg-amber-200/80"
             >
-              ✕ Cerrar sobre
+              ✕ Cerrar
             </button>
 
-            <p className="mt-2 text-center font-serif text-sm italic text-amber-900/80">
+            {/* Encabezado */}
+            <p className="mt-2 text-center font-serif text-xs italic tracking-wider text-amber-900/80">
               Con mucho amor te invitamos al
             </p>
 
-            <h1 className="my-2 text-center font-serif text-2xl font-bold leading-snug tracking-wide text-amber-950 md:text-3xl">
+            <h1 className="my-2 text-center font-serif text-2xl font-bold leading-snug tracking-wide text-[#2A2421] md:text-3xl">
               Bautizo y <br />
               Primer Cumpleaños
             </h1>
 
-            <p className="mb-3 text-center font-serif text-xs italic text-amber-900/80">
+            <p className="mb-2 text-center font-serif text-xs italic text-amber-900/80">
               de nuestra pequeña
             </p>
 
-            <div className="relative my-2 flex h-32 w-32 items-center justify-center rounded-full bg-amber-100/60 p-3 shadow-inner ring-2 ring-amber-200/50">
+            {/* Ilustración Osito */}
+            <div className="relative my-3 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-b from-amber-50 to-amber-100/60 p-3 shadow-inner ring-1 ring-amber-200/60">
               <BearIllustration />
             </div>
 
-            <p className="my-3 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-600">
+            {/* Mensaje principal */}
+            <p className="my-2 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-600">
               Será un día muy especial y queremos compartirlo con las personas más importantes en nuestras vidas.
             </p>
 
-            <p className="mb-4 font-serif text-base italic font-bold text-amber-700">
+            <p className="mb-4 font-serif text-sm italic font-bold text-amber-800">
               ¡Te esperamos!
             </p>
 
-            <div className="my-3 grid w-full grid-cols-3 gap-2 border-y border-amber-200/60 py-4 text-center">
+            {/* TARJETAS DE INFORMACIÓN SOBRIAS (3 Columnas) */}
+            <div className="my-3 grid w-full grid-cols-3 gap-2 border-y border-amber-200/60 py-5 text-center">
+              {/* Fecha */}
               <div className="flex flex-col items-center justify-start border-r border-amber-200/60 px-1">
-                <Calendar className="mb-1 h-5 w-5 text-amber-600" />
-                <p className="text-[11px] font-bold text-neutral-800">Sábado</p>
-                <p className="my-0.5 font-serif text-2xl font-bold text-amber-600">14</p>
+                <Calendar className="mb-1.5 h-4 w-4 text-amber-800" />
+                <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
+                <p className="my-0.5 font-serif text-2xl font-bold text-amber-800">14</p>
                 <p className="text-[9px] font-medium uppercase text-neutral-500">de noviembre de 2025</p>
               </div>
 
+              {/* Bautizo */}
               <div className="flex flex-col items-center justify-start border-r border-amber-200/60 px-1">
-                <Church className="mb-1 h-5 w-5 text-amber-600" />
-                <p className="text-[11px] font-bold text-neutral-800">Bautizo</p>
-                <p className="text-[10px] font-semibold text-amber-700">11:00 a.m.</p>
+                <Church className="mb-1.5 h-4 w-4 text-amber-800" />
+                <p className="text-[11px] font-bold text-[#2A2421]">Bautizo</p>
+                <p className="text-[10px] font-semibold text-amber-900">11:00 a.m.</p>
                 <p className="mt-1 text-[10px] text-neutral-600">Gante 5</p>
                 <p className="text-[10px] text-neutral-600">CDMX</p>
               </div>
 
+              {/* Cumpleaños */}
               <div className="flex flex-col items-center justify-start px-1">
-                <PartyPopper className="mb-1 h-5 w-5 text-amber-600" />
-                <p className="text-[11px] font-bold text-neutral-800">Cumpleaños</p>
-                <p className="text-[10px] font-semibold text-amber-700">3:00 p.m.</p>
+                <PartyPopper className="mb-1.5 h-4 w-4 text-amber-800" />
+                <p className="text-[11px] font-bold text-[#2A2421]">Cumpleaños</p>
+                <p className="text-[10px] font-semibold text-amber-900">3:00 p.m.</p>
                 <p className="mt-1 text-[10px] text-neutral-600">Salón de fiestas Flamingo</p>
               </div>
             </div>
 
+            {/* BOTÓN UBICACIÓN SOBRIO */}
             <div className="my-3 w-full text-center">
               <a
                 href="https://maps.google.com/?q=Gante+5+CDMX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-md active:scale-95 hover:bg-amber-700"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#2A2421] px-6 py-2.5 text-xs font-semibold uppercase tracking-widest text-amber-100 shadow-md transition-all active:scale-95 hover:bg-amber-900"
               >
-                <MapPin className="h-3.5 w-3.5" />
+                <MapPin className="h-3.5 w-3.5 text-amber-400" />
                 Ubicación
               </a>
             </div>
 
+            {/* SECCIÓN PAPÁS Y PADRINOS */}
             <div className="mt-2 w-full text-center">
-              <div className="my-2 rounded-2xl bg-amber-50/70 p-2.5 border border-amber-200/40">
-                <p className="flex items-center justify-center gap-1 font-serif text-xs italic text-amber-800">
-                  <BearPawIcon className="h-3 w-3 text-amber-600" /> Nuestros papás <BearPawIcon className="h-3 w-3 text-amber-600" />
+              <div className="my-2 rounded-xl bg-amber-50/50 p-3 border border-amber-200/40">
+                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic text-amber-900">
+                  <BearPawIcon className="h-3 w-3 text-amber-700" /> Nuestros papás <BearPawIcon className="h-3 w-3 text-amber-700" />
                 </p>
-                <p className="text-sm font-bold text-neutral-800">Lidia e Isai</p>
+                <p className="mt-0.5 text-sm font-semibold text-[#2A2421]">Lidia e Isai</p>
               </div>
 
-              <div className="my-2 rounded-2xl bg-amber-50/70 p-2.5 border border-amber-200/40">
-                <p className="flex items-center justify-center gap-1 font-serif text-xs italic text-amber-800">
-                  <BearPawIcon className="h-3 w-3 text-amber-600" /> Padrinos <BearPawIcon className="h-3 w-3 text-amber-600" />
+              <div className="my-2 rounded-xl bg-amber-50/50 p-3 border border-amber-200/40">
+                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic text-amber-900">
+                  <BearPawIcon className="h-3 w-3 text-amber-700" /> Padrinos <BearPawIcon className="h-3 w-3 text-amber-700" />
                 </p>
-                <p className="text-sm font-bold text-neutral-800">Teresa y Luis</p>
+                <p className="mt-0.5 text-sm font-semibold text-[#2A2421]">Teresa y Luis</p>
               </div>
             </div>
 
+            {/* CONFIRMACIÓN Y BOTÓN WHATSAPP CORREGIDO */}
             <div className="mt-4 flex flex-col items-center text-center">
-              <p className="max-w-xs font-serif text-[11px] italic text-neutral-500">
+              <p className="max-w-xs font-serif text-[11px] italic text-neutral-500 leading-relaxed">
                 Tu confirmación te agradecería nos ayudará a organizar todo con amor.
               </p>
 
               <a
-                href="https://wa.me/?text=Hola!%20Confirmo%20mi%20asistencia%20al%20Bautizo%20y%20Cumplea%C3%B1os."
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-2.5 text-xs font-bold text-white shadow-md hover:bg-emerald-700 active:scale-95"
+                className="mt-3.5 inline-flex items-center gap-2.5 rounded-full bg-emerald-700 px-7 py-3 text-xs font-bold tracking-wide text-white shadow-lg shadow-emerald-900/20 transition-all active:scale-95 hover:bg-emerald-800"
               >
                 <MessageCircle className="h-4 w-4" />
                 Confirmar por WhatsApp
               </a>
 
-              <p className="mt-3 font-serif text-base italic font-bold text-amber-800">
+              <p className="mt-4 font-serif text-base italic font-bold text-amber-900">
                 ¡Gracias!
               </p>
             </div>
