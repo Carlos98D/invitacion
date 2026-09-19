@@ -2,118 +2,9 @@
 
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
-
-// Ilustración de Osito Sosteniendo Pergamino con el Nombre "Merari"
-function BearWithScrollIllustration({ className = "h-full w-full" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 240 240" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <radialGradient id="bearGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#D97706" stopOpacity="0" />
-        </radialGradient>
-        <linearGradient id="scrollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#FFFDF9" />
-          <stop offset="50%" stopColor="#F4EAD2" />
-          <stop offset="100%" stopColor="#E4D2B3" />
-        </linearGradient>
-        <linearGradient id="scrollRoll" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#C49A6C" />
-          <stop offset="50%" stopColor="#E5C396" />
-          <stop offset="100%" stopColor="#A4794C" />
-        </linearGradient>
-      </defs>
-
-      {/* Resplandor de fondo */}
-      <circle cx="120" cy="120" r="110" fill="url(#bearGlow)" />
-
-      {/* Orejas del osito */}
-      <circle cx="75" cy="65" r="30" fill="#B8860B" />
-      <circle cx="75" cy="65" r="18" fill="#FDFBF7" />
-      <circle cx="165" cy="65" r="30" fill="#B8860B" />
-      <circle cx="165" cy="65" r="18" fill="#FDFBF7" />
-
-      {/* Cabeza del osito */}
-      <circle cx="120" cy="110" r="70" fill="#C59B6C" />
-
-      {/* Ojos */}
-      <circle cx="95" cy="100" r="7" fill="#2A2421" />
-      <circle cx="145" cy="100" r="7" fill="#2A2421" />
-      <circle cx="97" cy="97" r="2.5" fill="#FFFFFF" />
-      <circle cx="147" cy="97" r="2.5" fill="#FFFFFF" />
-
-      {/* Hocico */}
-      <ellipse cx="120" cy="126" rx="28" ry="21" fill="#FDFBF7" />
-      <ellipse cx="120" cy="117" rx="9" ry="6" fill="#2A2421" />
-      <path
-        d="M 120 123 C 120 131, 112 135, 107 131 M 120 123 C 120 131, 128 135, 133 131"
-        stroke="#2A2421"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-
-      {/* Mejillas */}
-      <circle cx="80" cy="118" r="8" fill="#E89B88" opacity="0.5" />
-      <circle cx="160" cy="118" r="8" fill="#E89B88" opacity="0.5" />
-
-      {/* Paticas / Brazos sujetando el pergamino */}
-      <ellipse cx="75" cy="170" rx="16" ry="13" fill="#B8860B" />
-      <ellipse cx="165" cy="170" rx="16" ry="13" fill="#B8860B" />
-
-      {/* PERGAMINO PRINCIPAL */}
-      <g filter="drop-shadow(0px 6px 12px rgba(0,0,0,0.18))">
-        {/* Cuerpo del pergamino */}
-        <rect x="45" y="145" width="150" height="60" rx="6" fill="url(#scrollGrad)" stroke="#B8860B" strokeWidth="1.5" />
-        
-        {/* Rollos de los extremos (Izquierdo y Derecho) */}
-        <ellipse cx="45" cy="175" rx="8" ry="32" fill="url(#scrollRoll)" stroke="#8C5830" strokeWidth="1.5" />
-        <ellipse cx="195" cy="175" rx="8" ry="32" fill="url(#scrollRoll)" stroke="#8C5830" strokeWidth="1.5" />
-
-        {/* Pequeños destellos decorativos en el pergamino */}
-        <path d="M 62 160 L 64 165 L 69 167 L 64 169 L 62 174 L 60 169 L 55 167 L 60 165 Z" fill="#D97706" opacity="0.6" />
-        <path d="M 178 160 L 180 165 L 185 167 L 180 169 L 178 174 L 176 169 L 171 167 L 176 165 Z" fill="#D97706" opacity="0.6" />
-
-        {/* Texto grabado "Merari" dentro del pergamino */}
-        <text
-          x="120"
-          y="183"
-          textAnchor="middle"
-          fontFamily="serif"
-          fontStyle="italic"
-          fontWeight="bold"
-          fontSize="26"
-          fill="#78350F"
-          letterSpacing="1px"
-        >
-          Merari
-        </text>
-      </g>
-    </svg>
-  )
-}
-
-function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="55" cy="55" r="28" fill="#B8860B" />
-      <circle cx="55" cy="55" r="16" fill="#FDFBF7" />
-      <circle cx="145" cy="55" r="28" fill="#B8860B" />
-      <circle cx="145" cy="55" r="16" fill="#FDFBF7" />
-      <circle cx="100" cy="100" r="65" fill="#C59B6C" />
-      <circle cx="75" cy="90" r="6.5" fill="#2A2421" />
-      <circle cx="125" cy="90" r="6.5" fill="#2A2421" />
-      <circle cx="77" cy="87.5" r="2.5" fill="#FFFFFF" />
-      <circle cx="127" cy="87.5" r="2.5" fill="#FFFFFF" />
-      <ellipse cx="100" cy="115" rx="25" ry="19" fill="#FDFBF7" />
-      <ellipse cx="100" cy="106" rx="8" ry="5.5" fill="#2A2421" />
-      <path d="M 100 111.5 C 100 119, 93 123, 89 119 M 100 111.5 C 100 119, 107 123, 111 119" stroke="#2A2421" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="62" cy="105" r="7.5" fill="#E89B88" opacity="0.45" />
-      <circle cx="138" cy="105" r="7.5" fill="#E89B88" opacity="0.45" />
-    </svg>
-  )
-}
 
 function BearPawIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -305,9 +196,9 @@ export default function Invitacion() {
               <motion.div
                 animate={{ scale: [1, 1.04, 1] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="relative my-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40"
+                className="relative my-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
               >
-                <BearIllustration />
+                <Image src="/oso.png" alt="Osito" width={140} height={140} className="object-contain" />
                 <div className="absolute bottom-1 right-1 rounded-full bg-gradient-to-r from-amber-700 to-amber-900 p-2 text-amber-100 shadow-xl">
                   <Heart className="h-4 w-4 fill-current text-amber-200" />
                 </div>
@@ -335,7 +226,7 @@ export default function Invitacion() {
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-400/50 bg-[#FDFBF7] px-6 py-8 shadow-[0_30px_100px_rgba(217,119,6,0.3)] md:min-h-[890px] md:max-h-[950px] md:rounded-[2.8rem]"
+            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-400/50 bg-[#FDFBF7] px-6 py-10 shadow-[0_30px_100px_rgba(217,119,6,0.3)] md:min-h-[940px] md:max-h-[980px] md:rounded-[2.8rem]"
           >
             <CornerOrnament className="absolute top-2 left-2" />
             <CornerOrnament className="absolute top-2 right-2 rotate-90" />
@@ -356,74 +247,59 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-center mt-1 z-10 w-full"
+              className="text-center mt-3 z-10 w-full"
             >
               <p className="font-serif text-xs italic tracking-widest text-amber-900/80">
-                Con mucho amor te invitamos a la
+                RECEPCIÓN
               </p>
-
-              <h1 className="my-2 font-serif text-2xl font-bold uppercase tracking-wider bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
-                Ceremonia y <br />
-                Recepción
-              </h1>
-
-              <p className="font-serif text-xs italic text-amber-900/80">
+              <p className="font-serif text-[11px] italic tracking-wider text-amber-900/60 mt-0.5">
                 de nuestra pequeña
               </p>
-
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-                className="relative my-3 py-1 px-2 text-center"
-              >
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-amber-500/60" />
-                  <Sparkles className="h-3 w-3 text-amber-600/70" />
-                  <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-amber-500/60" />
-                </div>
-
-                <h2 className="font-serif italic text-4xl md:text-5xl font-extrabold tracking-wide leading-tight bg-gradient-to-r from-amber-900 via-amber-600 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(217,119,6,0.15)]">
-                  Merari Catalina
-                </h2>
-
-                <div className="flex items-center justify-center gap-2 mt-1">
-                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-500/60" />
-                  <div className="h-1.5 w-1.5 rotate-45 bg-amber-500/80" />
-                  <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-amber-500/60" />
-                </div>
-              </motion.div>
             </motion.div>
 
-            {/* ILUSTRACIÓN DEL OSITO CON PERGAMINO Y EFECTO DE BRINCO */}
+            {/* IMAGEN DEL OSITO CON SU PERGAMINO Y EL NOMBRE DE MERARI INTEGRADO */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ 
                 opacity: 1, 
                 scale: 1,
-                y: [0, -10, 0] // Efecto de salto constante
+                y: [0, -8, 0] // Efecto de salto suave y elegante
               }}
               transition={{ 
-                opacity: { delay: 0.35 },
-                scale: { delay: 0.35, type: "spring", stiffness: 120 },
-                y: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: 0.5 } 
+                opacity: { delay: 0.3 },
+                scale: { delay: 0.3, type: "spring", stiffness: 120 },
+                y: { repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: 0.4 } 
               }}
-              className="relative my-3 flex h-40 w-44 items-center justify-center z-10"
+              className="relative my-4 flex flex-col items-center justify-center z-10 w-full"
             >
-              <BearWithScrollIllustration />
+              <div className="relative w-64 h-56 md:w-72 md:h-64 flex items-center justify-center drop-shadow-md">
+                <Image 
+                  src="/oso.png" 
+                  alt="Osito con pergamino" 
+                  fill 
+                  className="object-contain"
+                  priority
+                />
+                {/* Nombre colocado con estilo exacto en la zona en blanco del pergamino de tu imagen */}
+                <div className="absolute inset-x-0 top-[46%]/[50%] flex items-center justify-center pt-2 pointer-events-none">
+                  <span className="font-serif italic font-extrabold text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
+                    Merari
+                  </span>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
-              className="my-3 flex flex-col items-center space-y-3 z-10 px-2 text-center"
+              transition={{ delay: 0.4 }}
+              className="my-3 flex flex-col items-center space-y-2.5 z-10 px-4 text-center"
             >
               <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
-                Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
+                Será un día lleno de magia y bendiciones. Queremos compartir ese gran momento contigo.
               </p>
 
-              <p className="font-serif text-base italic font-extrabold text-amber-800 tracking-wide">
+              <p className="font-serif text-sm italic font-extrabold text-amber-800 tracking-wide">
                 ¡Te esperamos con los brazos abiertos!
               </p>
             </motion.div>
@@ -431,28 +307,28 @@ export default function Invitacion() {
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55 }}
-              className="my-2 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-4 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
+              transition={{ delay: 0.5 }}
+              className="my-4 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-4 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
             >
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
-                <Calendar className="mb-1 h-5 w-5 text-amber-700" />
+                <Calendar className="mb-1.5 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
                 <p className="my-0.5 font-serif text-2xl font-black text-amber-700">28</p>
                 <p className="text-[9px] font-semibold uppercase text-neutral-500">Noviembre 2025</p>
               </motion.div>
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
-                <Church className="mb-1 h-5 w-5 text-amber-700" />
+                <Church className="mb-1.5 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Ceremonia</p>
-                <p className="text-[10px] font-extrabold text-amber-900">11:00 a.m.</p>
+                <p className="text-[10px] font-extrabold text-amber-900 mt-0.5">11:00 a.m.</p>
                 <p className="mt-1 text-[10px] font-medium text-neutral-600">Gante 5</p>
                 <p className="text-[10px] font-medium text-neutral-600">CDMX</p>
               </motion.div>
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start px-1">
-                <PartyPopper className="mb-1 h-5 w-5 text-amber-700" />
+                <PartyPopper className="mb-1.5 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Recepción</p>
-                <p className="text-[10px] font-extrabold text-amber-900">3:00 p.m.</p>
+                <p className="text-[10px] font-extrabold text-amber-900 mt-0.5">3:00 p.m.</p>
                 <p className="mt-1 text-[10px] font-medium text-neutral-600">Salón Flamingo</p>
               </motion.div>
             </motion.div>
@@ -460,7 +336,7 @@ export default function Invitacion() {
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.65 }}
+              transition={{ delay: 0.6 }}
               className="my-3 w-full text-center z-20"
             >
               <motion.a
@@ -479,17 +355,17 @@ export default function Invitacion() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.75 }}
-              className="mt-1 w-full text-center z-10"
+              transition={{ delay: 0.7 }}
+              className="my-2 w-full text-center z-10 space-y-2"
             >
-              <div className="my-1.5 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
+              <div className="rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
                 <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
                   <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Papás <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
                 <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Isai Lino y Lidia Moreno</p>
               </div>
 
-              <div className="my-1.5 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
+              <div className="rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
                 <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
                   <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Padrinos <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
@@ -500,8 +376,8 @@ export default function Invitacion() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85 }}
-              className="mt-3 flex flex-col items-center text-center z-20"
+              transition={{ delay: 0.8 }}
+              className="mt-3 mb-2 flex flex-col items-center text-center z-20"
             >
               <p className="max-w-xs font-serif text-[11px] italic text-neutral-600 leading-relaxed font-medium">
                 Tu confirmación nos ayudará a organizar todo con mucho amor.
@@ -518,7 +394,7 @@ export default function Invitacion() {
                 </motion.div>
               </Link>
 
-              <p className="mt-3 font-serif text-lg italic font-black text-amber-900">
+              <p className="mt-4 font-serif text-base italic font-black text-amber-900">
                 ¡Gracias por acompañarnos!
               </p>
             </motion.div>
