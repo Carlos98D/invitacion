@@ -324,6 +324,11 @@ export default function Invitacion() {
               <p className="font-serif text-xs italic text-amber-900">
                 de nuestra pequeña
               </p>
+
+              {/* Nombre de la festejada */}
+              <h2 className="mt-1 font-serif text-2xl font-bold tracking-wide text-amber-800 drop-shadow-sm">
+                Merari Catalina
+              </h2>
             </motion.div>
 
             {/* Ilustración Osito con Aureola Rotativa */}
