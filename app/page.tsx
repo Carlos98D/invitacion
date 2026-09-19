@@ -267,10 +267,9 @@ export default function Invitacion() {
               </p>
               
               <h2 className="my-1 font-serif text-2xl font-bold tracking-tight text-[#2A2421]">
-                Ceremonia &amp; Primer Cumpleaños
+                Ceremonia &amp; Recepción
               </h2>
 
-              {/* FECHA ACTUALIZADA */}
               <p className="text-[11px] font-medium text-neutral-500 mt-1">Sábado 28 de Noviembre</p>
 
               <div className="mt-7 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
@@ -316,12 +315,12 @@ export default function Invitacion() {
               className="text-center mt-1 z-10 w-full"
             >
               <p className="font-serif text-xs italic tracking-widest text-amber-900/80">
-                Con mucho amor te invitamos al
+                Con mucho amor te invitamos a la
               </p>
 
               <h1 className="my-2 font-serif text-2xl font-bold uppercase tracking-wider bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
                 Ceremonia y <br />
-                Primer Cumpleaños
+                Recepción
               </h1>
 
               <p className="font-serif text-xs italic text-amber-900/80">
@@ -387,7 +386,7 @@ export default function Invitacion() {
               ¡Te esperamos con los brazos abiertos!
             </motion.p>
 
-            {/* TARJETAS DE FECHA Y HORARIOS (MODIFICADO A CEREMONIA Y FECHA 28) */}
+            {/* TARJETAS DE FECHA Y HORARIOS */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
@@ -411,7 +410,7 @@ export default function Invitacion() {
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start px-1">
                 <PartyPopper className="mb-1 h-5 w-5 text-amber-700" />
-                <p className="text-[11px] font-bold text-[#2A2421]">Cumpleaños</p>
+                <p className="text-[11px] font-bold text-[#2A2421]">Recepción</p>
                 <p className="text-[10px] font-extrabold text-amber-900">3:00 p.m.</p>
                 <p className="mt-1 text-[10px] font-medium text-neutral-600">Salón Flamingo</p>
               </motion.div>
@@ -437,7 +436,7 @@ export default function Invitacion() {
               </motion.a>
             </motion.div>
 
-            {/* SECCIÓN PAPÁS Y PADRINOS */}
+            {/* SECCIÓN PAPÁS Y PADRINOS (ACTUALIZADA) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -448,14 +447,14 @@ export default function Invitacion() {
                 <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
                   <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Papás <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
-                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Lidia e Isai</p>
+                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Isai Lino y Lidia Moreno</p>
               </div>
 
               <div className="my-1.5 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
                 <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
                   <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Padrinos <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
-                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Teresa y Luis</p>
+                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Teresa Barcenas y Luis Moreno</p>
               </div>
             </motion.div>
 
