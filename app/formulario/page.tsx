@@ -2,23 +2,60 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Sparkles, CheckCircle, Send, User, Users, Phone, Baby } from "lucide-react"
+import { Sparkles, CheckCircle, Send, User, Users, Phone, Baby, Plus, Minus } from "lucide-react"
 
 // URL DE TU GOOGLE APPS SCRIPT
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTQxuY6UWUe86ZnDUOGru9eQT182zW56r1vcG83d4z2__UM3JYVtIk9nyhgQjg_Dw/exec"
 
+// Límite máximo global de invitados permitidos
+const MAX_INVITADOS_TOTAL = 200
+
 export default function FormularioPage() {
   const [formData, setFormData] = useState({
     nombre: "",
-    adultos: "1",
-    ninos: "0",
+    adultos: 1,
+    ninos: 0,
     telefono: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
+  const totalInvitadosActuales = formData.adultos + formData.ninos
+
+  // Funciones para manejar los contadores de Adultos
+  const incrementarAdultos = () => {
+    if (totalInvitadosActuales < MAX_INVITADOS_TOTAL) {
+      setFormData((prev) => ({ ...prev, adultos: prev.adultos + 1 }))
+    }
+  }
+
+  const decrementarAdultos = () => {
+    if (formData.adultos > 1) { // Mínimo 1 adulto por registro
+      setFormData((prev) => ({ ...prev, adultos: prev.adultos - 1 }))
+    }
+  }
+
+  // Funciones para manejar los contadores de Niños
+  const incrementarNinos = () => {
+    if (totalInvitadosActuales < MAX_INVITADOS_TOTAL) {
+      setFormData((prev) => ({ ...prev, ninos: prev.ninos + 1 }))
+    }
+  }
+
+  const decrementarNinos = () => {
+    if (formData.ninos > 0) {
+      setFormData((prev) => ({ ...prev, ninos: prev.ninos - 1 }))
+    }
+  }
+
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (totalInvitadosActuales > MAX_INVITADOS_TOTAL) {
+      alert(`El número total de invitados no puede superar los ${MAX_INVITADOS_TOTAL}.`)
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -75,7 +112,7 @@ export default function FormularioPage() {
             </p>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmitForm} className="flex flex-col gap-4 text-left">
+          <form onSubmit={handleSubmitForm} className="flex flex-col gap-5 text-left">
             {/* NOMBRE */}
             <div>
               <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-1 flex items-center gap-1.5">
@@ -91,41 +128,68 @@ export default function FormularioPage() {
               />
             </div>
 
-            {/* ADULTOS Y NIÑOS */}
+            {/* CONTADORES DE ADULTOS Y NIÑOS */}
             <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-1 flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-amber-700" /> N° Adultos:
+              {/* CONTADOR ADULTOS */}
+              <div className="flex flex-col items-center rounded-2xl border border-amber-300/80 bg-white/80 p-3 shadow-inner">
+                <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-2 flex items-center gap-1">
+                  <Users className="h-4 w-4 text-amber-700" /> Adultos:
                 </label>
-                <select
-                  value={formData.adultos}
-                  onChange={(e) => setFormData({ ...formData, adultos: e.target.value })}
-                  className="w-full rounded-xl border border-amber-300/80 bg-white/90 px-3 py-2.5 text-xs text-[#2A2421] focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-300/50 shadow-inner transition-all"
-                >
-                  <option value="1">1 Adulto</option>
-                  <option value="2">2 Adultos</option>
-                  <option value="3">3 Adultos</option>
-                  <option value="4">4 Adultos</option>
-                  <option value="5">5+ Adultos</option>
-                </select>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={decrementarAdultos}
+                    disabled={formData.adultos <= 1}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-200/80 text-amber-900 transition-all hover:bg-amber-300 active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="w-6 text-center font-serif text-lg font-bold text-amber-950">
+                    {formData.adultos}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={incrementarAdultos}
+                    disabled={totalInvitadosActuales >= MAX_INVITADOS_TOTAL}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-700 text-amber-100 transition-all hover:bg-amber-800 active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
 
-              <div>
-                <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-1 flex items-center gap-1.5">
-                  <Baby className="h-4 w-4 text-amber-700" /> N° Niños:
+              {/* CONTADOR NIÑOS */}
+              <div className="flex flex-col items-center rounded-2xl border border-amber-300/80 bg-white/80 p-3 shadow-inner">
+                <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-2 flex items-center gap-1">
+                  <Baby className="h-4 w-4 text-amber-700" /> Niños:
                 </label>
-                <select
-                  value={formData.ninos}
-                  onChange={(e) => setFormData({ ...formData, ninos: e.target.value })}
-                  className="w-full rounded-xl border border-amber-300/80 bg-white/90 px-3 py-2.5 text-xs text-[#2A2421] focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-300/50 shadow-inner transition-all"
-                >
-                  <option value="0">0 Niños</option>
-                  <option value="1">1 Niño</option>
-                  <option value="2">2 Niños</option>
-                  <option value="3">3 Niños</option>
-                  <option value="4">4+ Niños</option>
-                </select>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={decrementarNinos}
+                    disabled={formData.ninos <= 0}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-200/80 text-amber-900 transition-all hover:bg-amber-300 active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+                  >
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="w-6 text-center font-serif text-lg font-bold text-amber-950">
+                    {formData.ninos}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={incrementarNinos}
+                    disabled={totalInvitadosActuales >= MAX_INVITADOS_TOTAL}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-700 text-amber-100 transition-all hover:bg-amber-800 active:scale-95 disabled:opacity-40 disabled:pointer-events-none"
+                  >
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
+            </div>
+
+            {/* MUESTRA DEL TOTAL SELECCIONADO */}
+            <div className="text-center font-serif text-xs italic text-amber-900">
+              Total de personas a registrar: <span className="font-bold text-amber-950">{totalInvitadosActuales}</span> (Máximo {MAX_INVITADOS_TOTAL})
             </div>
 
             {/* TELÉFONO */}
@@ -149,7 +213,7 @@ export default function FormularioPage() {
               whileTap={{ scale: 0.98 }}
               type="submit"
               disabled={isSubmitting}
-              className="mt-3 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 py-3.5 text-xs font-black tracking-widest text-amber-100 shadow-xl border border-amber-400/30 transition-all disabled:opacity-50"
+              className="mt-2 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 py-3.5 text-xs font-black tracking-widest text-amber-100 shadow-xl border border-amber-400/30 transition-all disabled:opacity-50"
             >
               <Send className="h-4 w-4" />
               <span>{isSubmitting ? "ENVIANDO..." : "ENVIAR REGISTRO"}</span>
