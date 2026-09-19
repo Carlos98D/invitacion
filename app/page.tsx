@@ -2,35 +2,50 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, MessageCircle, Volume2, VolumeX } from "lucide-react"
+import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, MessageCircle, Volume2, VolumeX, Star } from "lucide-react"
 
-// Ilustración de Osito SVG Elegante con Adornos
+// Ilustración de Osito SVG Premium con Aureola Dorada
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="55" cy="55" r="28" fill="#B8860B" opacity="0.85" />
+      <defs>
+        <radialGradient id="bearGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#D97706" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      
+      {/* Resplandor de fondo */}
+      <circle cx="100" cy="100" r="90" fill="url(#bearGlow)" />
+
+      {/* Orejas */}
+      <circle cx="55" cy="55" r="28" fill="#B8860B" />
       <circle cx="55" cy="55" r="16" fill="#FDFBF7" />
-      <circle cx="145" cy="55" r="28" fill="#B8860B" opacity="0.85" />
+      <circle cx="145" cy="55" r="28" fill="#B8860B" />
       <circle cx="145" cy="55" r="16" fill="#FDFBF7" />
 
+      {/* Cabeza */}
       <circle cx="100" cy="100" r="65" fill="#C59B6C" />
 
-      <circle cx="75" cy="90" r="6" fill="#2A2421" />
-      <circle cx="125" cy="90" r="6" fill="#2A2421" />
-      <circle cx="77" cy="88" r="2" fill="#FFFFFF" />
-      <circle cx="127" cy="88" r="2" fill="#FFFFFF" />
+      {/* Ojos brillantes */}
+      <circle cx="75" cy="90" r="6.5" fill="#2A2421" />
+      <circle cx="125" cy="90" r="6.5" fill="#2A2421" />
+      <circle cx="77" cy="87.5" r="2.5" fill="#FFFFFF" />
+      <circle cx="127" cy="87.5" r="2.5" fill="#FFFFFF" />
 
-      <ellipse cx="100" cy="115" rx="24" ry="18" fill="#FDFBF7" />
-      <ellipse cx="100" cy="106" rx="8" ry="5" fill="#2A2421" />
+      {/* Hocico */}
+      <ellipse cx="100" cy="115" rx="25" ry="19" fill="#FDFBF7" />
+      <ellipse cx="100" cy="106" rx="8" ry="5.5" fill="#2A2421" />
       <path
-        d="M 100 111 C 100 118, 93 122, 89 118 M 100 111 C 100 118, 107 122, 111 118"
+        d="M 100 111.5 C 100 119, 93 123, 89 119 M 100 111.5 C 100 119, 107 123, 111 119"
         stroke="#2A2421"
         strokeWidth="2.5"
         strokeLinecap="round"
       />
 
-      <circle cx="62" cy="105" r="7" fill="#D9A08B" opacity="0.4" />
-      <circle cx="138" cy="105" r="7" fill="#D9A08B" opacity="0.4" />
+      {/* Mejillas */}
+      <circle cx="62" cy="105" r="7.5" fill="#E89B88" opacity="0.45" />
+      <circle cx="138" cy="105" r="7.5" fill="#E89B88" opacity="0.45" />
     </svg>
   )
 }
@@ -47,45 +62,44 @@ function BearPawIcon({ className = "h-4 w-4" }: { className?: string }) {
   )
 }
 
-// Adorno Elegante para Esquinas (Filigrana / Arabesco)
 function CornerOrnament({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 100 100" className={`h-12 w-12 text-amber-600/40 ${className}`} fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M0,0 L40,0 C20,10 10,20 0,40 Z" fill="currentColor" opacity="0.15" />
-      <path d="M0,20 C30,20 40,30 40,60" />
-      <path d="M20,0 C20,30 30,40 60,40" />
-      <circle cx="25" cy="25" r="4" fill="currentColor" />
+    <svg viewBox="0 0 100 100" className={`h-14 w-14 text-amber-500/50 ${className}`} fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M0,0 L45,0 C22,12 12,22 0,45 Z" fill="currentColor" opacity="0.2" />
+      <path d="M0,25 C35,25 45,35 45,70" />
+      <path d="M25,0 C25,35 35,45 70,45" />
+      <circle cx="28" cy="28" r="4.5" fill="currentColor" />
     </svg>
   )
 }
 
-// Partículas flotantes de fondo
-function FloatingParticles() {
-  const particles = Array.from({ length: 18 })
+// Lluvia constante de Destellos de Oro
+function GoldSparkles() {
+  const sparkles = Array.from({ length: 22 })
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {particles.map((_, i) => (
+      {sparkles.map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-amber-300/25"
+          className="absolute text-amber-300/40"
           style={{
-            width: Math.random() * 6 + 2 + "px",
-            height: Math.random() * 6 + 2 + "px",
             top: Math.random() * 100 + "%",
             left: Math.random() * 100 + "%",
           }}
           animate={{
-            y: [0, -50, 0],
-            opacity: [0.1, 0.8, 0.1],
-            scale: [1, 1.4, 1],
+            scale: [0, 1.3, 0],
+            rotate: [0, 180, 360],
+            opacity: [0, 0.9, 0],
           }}
           transition={{
-            duration: Math.random() * 5 + 4,
+            duration: Math.random() * 4 + 3,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: Math.random() * 3,
+            delay: Math.random() * 4,
           }}
-        />
+        >
+          <Star className="h-3 w-3 fill-amber-300" />
+        </motion.div>
       ))}
     </div>
   )
@@ -96,7 +110,7 @@ export default function Invitacion() {
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // 1. Iniciar música tras primer toque/clic
+  // Autoplay al interactuar por primera vez
   useEffect(() => {
     const handleFirstInteraction = () => {
       if (audioRef.current && audioRef.current.paused) {
@@ -110,7 +124,7 @@ export default function Invitacion() {
     return () => window.removeEventListener("click", handleFirstInteraction)
   }, [])
 
-  // 2. PAUSAR MÚSICA SI SALE O CAMBIA DE PESTAÑA / NAVEGADOR
+  // Pausa automática al salir del navegador
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!audioRef.current) return
@@ -129,7 +143,6 @@ export default function Invitacion() {
     return () => document.removeEventListener("visibilitychange", handleVisibilityChange)
   }, [isOpen])
 
-  // Toggle manual de audio
   const toggleMusic = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (!audioRef.current) return
@@ -154,13 +167,10 @@ export default function Invitacion() {
   }
 
   const whatsappUrl = `https://api.whatsapp.com/send?phone=5215536975513&text=Confirmo%20mi%20asistencia`
-  
-  // URL exacta de tu ubicación en Google Maps
   const locationUrl = `https://www.google.com/maps/dir//Salon+flamingo+Tultitlan,+Av.+Toluca+Esq,+La+Sarda%C3%B1a,+54090+Buenavista,+M%C3%A9x./@19.6083712,-99.1592448,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x85d1f77daf733af9:0xa27412d4f0116198!2m2!1d-99.1774046!2d19.5935291`
 
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#141211] p-3 font-sans text-[#2A2421] md:p-6 overflow-hidden selection:bg-amber-200">
-      {/* Audio Element */}
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#0F0D0C] p-3 font-sans text-[#2A2421] md:p-6 overflow-hidden selection:bg-amber-300">
       <audio
         ref={audioRef}
         src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
@@ -168,24 +178,24 @@ export default function Invitacion() {
         preload="auto"
       />
 
-      <FloatingParticles />
+      <GoldSparkles />
 
-      {/* BOTÓN FLOTANTE DE BOMBILLA / AUDIO EN LA ESQUINA INFERIOR DERECHA */}
+      {/* BOTÓN MÚSICA ESQUINA INFERIOR DERECHA */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1 }}
+        transition={{ delay: 0.8 }}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2"
       >
-        <span className="hidden text-[10px] font-semibold uppercase tracking-widest text-amber-200/80 bg-[#2A2421]/90 px-3 py-1.5 rounded-full border border-amber-300/20 backdrop-blur-md md:inline-block">
-          {isPlaying ? "Música activa" : "Música en pausa"}
+        <span className="hidden text-[10px] font-bold uppercase tracking-widest text-amber-200/90 bg-[#1F1A17]/90 px-3.5 py-1.5 rounded-full border border-amber-400/30 backdrop-blur-md shadow-2xl md:inline-block">
+          {isPlaying ? "Música activa" : "Música pausada"}
         </span>
 
         <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.15, rotate: 5 }}
+          whileTap={{ scale: 0.85 }}
           onClick={toggleMusic}
-          className="flex h-13 w-13 items-center justify-center rounded-full border-2 border-amber-400/40 bg-gradient-to-br from-[#2A2421] to-[#12100F] text-amber-100 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md transition-all hover:border-amber-400"
+          className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-amber-400/60 bg-gradient-to-br from-[#2A2421] via-[#1A1614] to-[#0D0B0A] text-amber-100 shadow-[0_10px_35px_rgba(217,119,6,0.3)] backdrop-blur-lg transition-all hover:border-amber-300"
           title={isPlaying ? "Silenciar música" : "Activar música"}
         >
           {isPlaying ? (
@@ -196,43 +206,42 @@ export default function Invitacion() {
         </motion.button>
       </motion.div>
 
-      {/* Resplandor de fondo */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-950/30 via-[#141211] to-[#0A0908] pointer-events-none" />
+      {/* Resplandor ambiental de fondo */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-950/40 via-[#0F0D0C] to-[#050404] pointer-events-none" />
 
       <AnimatePresence mode="wait">
         {!isOpen ? (
           /* =========================================================
-             VISTA 1: SOBRE ELEGANTE DE LUJO
+             VISTA 1: SOBRE DE LUJO TIPO "GALA"
              ========================================================= */
           <motion.div
             key="envelope-view"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.85, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -40 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 1.1, rotateX: 30, y: -50 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 flex flex-col items-center justify-center px-4"
           >
             <motion.div
-              animate={{ y: [0, -5, 0] }}
+              animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="mb-5 flex items-center gap-2 font-serif text-xs tracking-[0.35em] uppercase text-amber-300"
+              className="mb-6 flex items-center gap-2.5 font-serif text-xs tracking-[0.4em] uppercase text-amber-300 drop-shadow-[0_2px_8px_rgba(245,158,11,0.5)]"
             >
-              <Sparkles className="h-4 w-4 text-amber-400" />
-              <span>Invitación Especial</span>
-              <Sparkles className="h-4 w-4 text-amber-400" />
+              <Sparkles className="h-4 w-4 text-amber-400 animate-spin" />
+              <span>Invitación Exclusiva</span>
+              <Sparkles className="h-4 w-4 text-amber-400 animate-spin" />
             </motion.div>
 
             <motion.button
-              whileHover={{ y: -6 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
               onClick={handleOpenEnvelope}
-              className="group relative flex w-full max-w-sm flex-col items-center overflow-hidden rounded-[2.5rem] border-2 border-amber-300/40 bg-gradient-to-b from-[#FAF8F5] via-[#F4EFEA] to-[#E5D7C8] p-8 text-center shadow-[0_30px_70px_rgba(0,0,0,0.8)] transition-all duration-500"
+              className="group relative flex w-full max-w-sm flex-col items-center overflow-hidden rounded-[2.5rem] border-2 border-amber-400/50 bg-gradient-to-b from-[#FAF8F5] via-[#F3ECE3] to-[#E2D2C0] p-8 text-center shadow-[0_35px_90px_rgba(217,119,6,0.25)] transition-all duration-500 hover:border-amber-300"
             >
-              {/* Adornos en esquinas superiores */}
               <CornerOrnament className="absolute top-2 left-2" />
               <CornerOrnament className="absolute top-2 right-2 rotate-90" />
 
-              <div className="absolute top-0 h-2 w-36 rounded-b-full bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600 shadow-md" />
+              <div className="absolute top-0 h-2.5 w-40 rounded-b-full bg-gradient-to-r from-amber-600 via-amber-300 to-amber-600 shadow-md" />
 
               <div className="absolute top-6 left-6 text-amber-900/10 rotate-[-15deg]">
                 <BearPawIcon className="h-8 w-8" />
@@ -241,206 +250,213 @@ export default function Invitacion() {
                 <BearPawIcon className="h-8 w-8" />
               </div>
 
+              {/* Marco con osito centrado */}
               <motion.div
-                animate={{ scale: [1, 1.03, 1] }}
+                animate={{ scale: [1, 1.04, 1] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="relative my-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100/90 to-amber-200/70 p-4 shadow-md ring-2 ring-amber-300/60"
+                className="relative my-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40"
               >
                 <BearIllustration />
-                <div className="absolute bottom-1 right-1 rounded-full bg-amber-800 p-2 text-amber-100 shadow-lg">
-                  <Heart className="h-4 w-4 fill-current" />
+                <div className="absolute bottom-1 right-1 rounded-full bg-gradient-to-r from-amber-700 to-amber-900 p-2 text-amber-100 shadow-xl">
+                  <Heart className="h-4 w-4 fill-current text-amber-200" />
                 </div>
               </motion.div>
 
-              <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-amber-900/70">
+              <p className="text-[10px] font-extrabold uppercase tracking-[0.4em] text-amber-900/80">
                 Nuestra Pequeña
               </p>
               <h2 className="my-2 font-serif text-2xl font-bold tracking-wide text-[#2A2421]">
                 Bautizo &amp; Primer Cumpleaños
               </h2>
-              <p className="text-xs font-medium text-neutral-500">Sábado 14 de Noviembre</p>
+              <p className="text-xs font-semibold text-neutral-500">Sábado 14 de Noviembre</p>
 
-              <div className="mt-8 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#2A2421] to-[#1A1614] px-8 py-3.5 text-xs font-semibold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:from-amber-900 group-hover:to-amber-950">
-                <MailOpen className="h-4 w-4 text-amber-400" />
+              <div className="mt-8 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
+                <MailOpen className="h-4 w-4 text-amber-200" />
                 <span>Abrir Invitación</span>
               </div>
             </motion.button>
           </motion.div>
         ) : (
           /* =========================================================
-             VISTA 2: TARJETA / SITIO CON ADORNOS Y ACABADOS PRO
+             VISTA 2: TARJETA MAGNÍFICA Y OSTENTOSA
              ========================================================= */
           <motion.main
             key="invitation-view"
-            initial={{ opacity: 0, scale: 0.94, y: 30 }}
+            initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-300/40 bg-[#FDFBF7] px-6 py-8 shadow-[0_25px_80px_rgba(0,0,0,0.85)] md:min-h-[880px] md:max-h-[920px] md:rounded-[2.5rem]"
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-400/50 bg-[#FDFBF7] px-6 py-8 shadow-[0_30px_100px_rgba(217,119,6,0.3)] md:min-h-[890px] md:max-h-[930px] md:rounded-[2.8rem]"
           >
-            {/* Adornos Dorados en Esquinas */}
+            {/* Filigranas en las 4 esquinas */}
             <CornerOrnament className="absolute top-2 left-2" />
             <CornerOrnament className="absolute top-2 right-2 rotate-90" />
             <CornerOrnament className="absolute bottom-2 left-2 -rotate-90" />
             <CornerOrnament className="absolute bottom-2 right-2 rotate-180" />
 
-            {/* Marco de Línea Doble */}
-            <div className="absolute inset-3 border border-amber-300/30 rounded-[2rem] pointer-events-none" />
+            {/* Marco dorado interior */}
+            <div className="absolute inset-3 border border-amber-400/40 rounded-[2.3rem] pointer-events-none" />
+            <div className="absolute inset-4 border border-dashed border-amber-300/30 rounded-[2rem] pointer-events-none" />
 
-            {/* Botón Cerrar */}
+            {/* Botón Cerrar sobre */}
             <button
               onClick={() => setIsOpen(false)}
-              className="self-end z-20 rounded-full bg-amber-100/70 px-3.5 py-1 text-[10px] font-semibold tracking-wider text-amber-900 transition-all hover:bg-amber-200"
+              className="self-end z-20 rounded-full bg-amber-100/80 px-4 py-1 text-[10px] font-bold tracking-widest uppercase text-amber-900 transition-all hover:bg-amber-200 hover:scale-105 active:scale-95 shadow-sm"
             >
               ✕ Cerrar
             </button>
 
-            {/* Encabezado */}
+            {/* Encabezado Principal */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-center mt-1"
+              className="text-center mt-1 z-10"
             >
-              <p className="font-serif text-xs italic tracking-wider text-amber-900/80">
+              <p className="font-serif text-xs italic tracking-widest text-amber-900">
                 Con mucho amor te invitamos al
               </p>
 
-              <h1 className="my-2 font-serif text-2xl font-bold leading-snug tracking-wide text-[#2A2421] md:text-3xl">
+              <h1 className="my-2 font-serif text-3xl font-extrabold leading-snug tracking-wide bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
                 Bautizo y <br />
                 Primer Cumpleaños
               </h1>
 
-              <p className="font-serif text-xs italic text-amber-900/80">
+              <p className="font-serif text-xs italic text-amber-900">
                 de nuestra pequeña
               </p>
             </motion.div>
 
-            {/* Osito Central con Aureola Animada */}
+            {/* Ilustración Osito con Aureola Rotativa */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-              className="relative my-4 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-b from-amber-50 to-amber-100/80 p-3 shadow-inner ring-2 ring-amber-300/50"
+              transition={{ delay: 0.35, type: "spring", stiffness: 120 }}
+              className="relative my-4 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/90 p-4 shadow-xl ring-4 ring-amber-300/60 z-10"
             >
               <BearIllustration />
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-2 border-dashed border-amber-400/40 pointer-events-none"
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -inset-1 rounded-full border-2 border-dashed border-amber-400/60 pointer-events-none"
               />
             </motion.div>
 
-            {/* Mensaje principal */}
+            {/* Mensaje emotivo */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="my-2 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-600"
+              transition={{ delay: 0.45 }}
+              className="my-2 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-700 z-10"
             >
               Será un día muy especial y queremos compartirlo con las personas más importantes en nuestras vidas.
             </motion.p>
 
-            <p className="mb-4 font-serif text-sm italic font-bold text-amber-800">
-              ¡Te esperamos!
-            </p>
-
-            {/* BLOQUE DE FECHA Y HORARIOS CON MARCOS DE ADORNO */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <motion.p
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
-              className="my-3 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-200/80 py-5 text-center bg-amber-50/30 rounded-xl"
+              className="mb-4 font-serif text-base italic font-extrabold text-amber-800 tracking-wide z-10"
             >
-              <motion.div whileHover={{ y: -3 }} className="flex flex-col items-center justify-start border-r border-amber-200/60 px-1">
-                <Calendar className="mb-1.5 h-4 w-4 text-amber-800" />
+              ¡Te esperamos!
+            </motion.p>
+
+            {/* TARJETAS DE FECHA Y HORARIOS (Tarjetas con relieve) */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+              className="my-3 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-5 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
+            >
+              <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
+                <Calendar className="mb-1.5 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
-                <p className="my-0.5 font-serif text-2xl font-bold text-amber-800">14</p>
-                <p className="text-[9px] font-medium uppercase text-neutral-500">de noviembre de 2025</p>
+                <p className="my-0.5 font-serif text-2xl font-black text-amber-700">14</p>
+                <p className="text-[9px] font-semibold uppercase text-neutral-500">Noviembre 2025</p>
               </motion.div>
 
-              <motion.div whileHover={{ y: -3 }} className="flex flex-col items-center justify-start border-r border-amber-200/60 px-1">
-                <Church className="mb-1.5 h-4 w-4 text-amber-800" />
+              <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
+                <Church className="mb-1.5 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Bautizo</p>
-                <p className="text-[10px] font-semibold text-amber-900">11:00 a.m.</p>
-                <p className="mt-1 text-[10px] text-neutral-600">Gante 5</p>
-                <p className="text-[10px] text-neutral-600">CDMX</p>
+                <p className="text-[10px] font-extrabold text-amber-900">11:00 a.m.</p>
+                <p className="mt-1 text-[10px] font-medium text-neutral-600">Gante 5</p>
+                <p className="text-[10px] font-medium text-neutral-600">CDMX</p>
               </motion.div>
 
-              <motion.div whileHover={{ y: -3 }} className="flex flex-col items-center justify-start px-1">
-                <PartyPopper className="mb-1.5 h-4 w-4 text-amber-800" />
+              <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start px-1">
+                <PartyPopper className="mb-1.5 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Cumpleaños</p>
-                <p className="text-[10px] font-semibold text-amber-900">3:00 p.m.</p>
-                <p className="mt-1 text-[10px] text-neutral-600">Salón Flamingo</p>
+                <p className="text-[10px] font-extrabold text-amber-900">3:00 p.m.</p>
+                <p className="mt-1 text-[10px] font-medium text-neutral-600">Salón Flamingo</p>
               </motion.div>
             </motion.div>
 
-            {/* BOTÓN UBICACIÓN REAL DE GOOGLE MAPS RESTAURADO */}
+            {/* BOTÓN UBICACIÓN REAL DE GOOGLE MAPS */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.65 }}
               className="my-3 w-full text-center z-20"
             >
               <motion.a
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
+                whileHover={{ scale: 1.05, shadow: "0 15px 30px rgba(0,0,0,0.4)" }}
+                whileTap={{ scale: 0.95 }}
                 href={locationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2A2421] to-[#1A1614] px-7 py-3 text-xs font-semibold uppercase tracking-widest text-amber-100 shadow-xl border border-amber-400/30 transition-all"
+                className="inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-[#2A2421] via-[#1F1A17] to-[#12100F] px-8 py-3.5 text-xs font-bold uppercase tracking-widest text-amber-100 shadow-2xl border-2 border-amber-400/40 transition-all"
               >
                 <MapPin className="h-4 w-4 text-amber-400 animate-bounce" />
                 <span>Ver Ubicación en Maps</span>
               </motion.a>
             </motion.div>
 
-            {/* TARJETAS DE PAPÁS Y PADRINOS */}
+            {/* SECCIÓN PAPÁS Y PADRINOS */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="mt-2 w-full text-center"
+              transition={{ delay: 0.75 }}
+              className="mt-2 w-full text-center z-10"
             >
-              <div className="my-2 rounded-2xl bg-gradient-to-r from-amber-100/50 via-amber-50/80 to-amber-100/50 p-3 border border-amber-300/40 shadow-sm">
-                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic text-amber-900">
-                  <BearPawIcon className="h-3 w-3 text-amber-700" /> Nuestros papás <BearPawIcon className="h-3 w-3 text-amber-700" />
+              <div className="my-2 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3.5 border-2 border-amber-300/50 shadow-md">
+                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
+                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Nuestros papás <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
-                <p className="mt-0.5 text-sm font-semibold text-[#2A2421]">Lidia e Isai</p>
+                <p className="mt-1 text-sm font-extrabold text-[#2A2421]">Lidia e Isai</p>
               </div>
 
-              <div className="my-2 rounded-2xl bg-gradient-to-r from-amber-100/50 via-amber-50/80 to-amber-100/50 p-3 border border-amber-300/40 shadow-sm">
-                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic text-amber-900">
-                  <BearPawIcon className="h-3 w-3 text-amber-700" /> Padrinos <BearPawIcon className="h-3 w-3 text-amber-700" />
+              <div className="my-2 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3.5 border-2 border-amber-300/50 shadow-md">
+                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
+                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Padrinos <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
-                <p className="mt-0.5 text-sm font-semibold text-[#2A2421]">Teresa y Luis</p>
+                <p className="mt-1 text-sm font-extrabold text-[#2A2421]">Teresa y Luis</p>
               </div>
             </motion.div>
 
-            {/* CONFIRMACIÓN WHATSAPP */}
+            {/* BOTÓN WHATSAPP DE CONFIRMACIÓN */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.85 }}
               className="mt-4 flex flex-col items-center text-center z-20"
             >
-              <p className="max-w-xs font-serif text-[11px] italic text-neutral-500 leading-relaxed">
-                Tu confirmación te agradecería nos ayudará a organizar todo con amor.
+              <p className="max-w-xs font-serif text-[11px] italic text-neutral-600 leading-relaxed font-medium">
+                Tu confirmación nos ayudará a organizar todo con mucho amor.
               </p>
 
               <motion.a
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3.5 inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-700 px-8 py-3 text-xs font-bold tracking-wide text-white shadow-xl shadow-emerald-900/20 transition-all hover:from-emerald-700 hover:to-emerald-800"
+                className="mt-3.5 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 px-9 py-3.5 text-xs font-black tracking-wider text-white shadow-2xl shadow-emerald-900/40 transition-all border border-emerald-400/30"
               >
                 <MessageCircle className="h-4 w-4" />
                 <span>Confirmar por WhatsApp</span>
               </motion.a>
 
-              <p className="mt-4 font-serif text-base italic font-bold text-amber-900">
-                ¡Gracias!
+              <p className="mt-4 font-serif text-lg italic font-black text-amber-900">
+                ¡Gracias por acompañarnos!
               </p>
             </motion.div>
           </motion.main>
