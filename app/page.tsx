@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star, Crown } from "lucide-react"
+import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
 
 // Ilustración de Osito SVG Premium con Aureola Dorada
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
@@ -263,16 +263,15 @@ export default function Invitacion() {
               </motion.div>
 
               <p className="text-[10px] font-extrabold uppercase tracking-[0.4em] text-amber-900/80">
-                Nuestra Reina
+                Nuestra Pequeña
               </p>
               
-              {/* Nombre de gala en el sobre */}
-              <h2 className="my-1 font-serif italic text-3xl font-extrabold tracking-wide bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 bg-clip-text text-transparent">
+              <h2 className="my-1 font-serif italic text-3xl font-bold tracking-wide bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 bg-clip-text text-transparent">
                 Merari Catalina
               </h2>
 
-              <p className="text-xs font-bold text-amber-800/90 tracking-wider">Bautizo &amp; 1<sup>er</sup> Año</p>
-              <p className="text-[11px] font-semibold text-neutral-500 mt-1">Sábado 14 de Noviembre</p>
+              <p className="text-xs font-semibold text-neutral-600 tracking-wider">Bautizo &amp; Primer Cumpleaños</p>
+              <p className="text-[11px] font-medium text-neutral-500 mt-1">Sábado 14 de Noviembre</p>
 
               <div className="mt-7 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
                 <MailOpen className="h-4 w-4 text-amber-200" />
@@ -282,7 +281,7 @@ export default function Invitacion() {
           </motion.div>
         ) : (
           /* =========================================================
-              VISTA 2: TARJETA MAGNÍFICA Y OSTENTOSA
+              VISTA 2: TARJETA MAGNÍFICA Y ELEGANTE
              ========================================================= */
           <motion.main
             key="invitation-view"
@@ -316,45 +315,44 @@ export default function Invitacion() {
               transition={{ delay: 0.2 }}
               className="text-center mt-1 z-10 w-full"
             >
-              <p className="font-serif text-xs italic tracking-widest text-amber-900/80 uppercase">
-                Con la bendición de Dios te invitamos al
+              <p className="font-serif text-xs italic tracking-widest text-amber-900/80">
+                Con mucho amor te invitamos al
               </p>
 
-              <h1 className="my-1.5 font-serif text-2xl font-black uppercase tracking-widest bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
+              <h1 className="my-2 font-serif text-2xl font-bold uppercase tracking-wider bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
                 Bautizo y <br />
                 Primer Cumpleaños
               </h1>
 
               <p className="font-serif text-xs italic text-amber-900/80">
-                de nuestra adorada princesa
+                de nuestra pequeña
               </p>
 
-              {/* CONTENEDOR RECTANGULAR DE GALA PARA MERARI CATALINA */}
+              {/* SECCIÓN TIPOGRÁFICA DE ALTA ALCURNIA Y ELEGANCIA */}
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-                className="relative my-3.5 mx-auto w-full max-w-[320px] rounded-3xl border-2 border-amber-400/60 bg-gradient-to-r from-amber-100/90 via-amber-50 to-amber-100/90 px-4 py-3 shadow-[0_10px_30px_rgba(217,119,6,0.15)] backdrop-blur-sm"
+                className="relative my-4 py-2 px-2 text-center"
               >
-                {/* Corona decorativa superior */}
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600 p-1.5 shadow-md border border-amber-200">
-                  <Crown className="h-4 w-4 text-amber-950 fill-amber-300" />
+                {/* Adorno superior sutil */}
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-amber-500/60" />
+                  <Sparkles className="h-3 w-3 text-amber-600/70" />
+                  <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-amber-500/60" />
                 </div>
 
-                <div className="flex items-center justify-center gap-1 mt-1">
-                  <Sparkles className="h-3.5 w-3.5 text-amber-600 animate-pulse" />
-                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-amber-800">
-                    La Reina de la Fiesta
-                  </span>
-                  <Sparkles className="h-3.5 w-3.5 text-amber-600 animate-pulse" />
-                </div>
-
-                {/* NOMBRE REINANTE CON ESTILO SCRIPT / SERIF ELEGANTEDE ALTO IMPACTO */}
-                <h2 className="my-1 font-serif italic text-3xl md:text-4xl font-extrabold tracking-wide bg-gradient-to-r from-amber-800 via-amber-600 to-amber-900 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(217,119,6,0.2)]">
+                {/* NOMBRE REINANTE: TIPOGRAFÍA CURSIVA SERIF CON PERSONALIDAD */}
+                <h2 className="font-serif italic text-4xl md:text-5xl font-extrabold tracking-wide leading-tight bg-gradient-to-r from-amber-900 via-amber-600 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(217,119,6,0.15)]">
                   Merari Catalina
                 </h2>
 
-                <div className="h-0.5 w-24 mx-auto bg-gradient-to-r from-transparent via-amber-400 to-transparent rounded-full" />
+                {/* Adorno inferior sutil */}
+                <div className="flex items-center justify-center gap-2 mt-1">
+                  <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-500/60" />
+                  <div className="h-1.5 w-1.5 rotate-45 bg-amber-500/80" />
+                  <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-amber-500/60" />
+                </div>
               </motion.div>
             </motion.div>
 
@@ -380,7 +378,7 @@ export default function Invitacion() {
               transition={{ delay: 0.45 }}
               className="my-2 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-700 z-10"
             >
-              Será un día lleno de magia, bendiciones y alegría. Queremos compartir este gran momento contigo.
+              Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
             </motion.p>
 
             <motion.p
