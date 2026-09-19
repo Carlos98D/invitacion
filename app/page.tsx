@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
+import { MapPin, Church, PartyPopper, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
 
 function BearPawIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -199,9 +199,6 @@ export default function Invitacion() {
                 className="relative my-6 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
               >
                 <Image src="/oso.png" alt="Osito" width={140} height={140} className="object-contain" />
-                <div className="absolute bottom-1 right-1 rounded-full bg-gradient-to-r from-amber-700 to-amber-900 p-2 text-amber-100 shadow-xl">
-                  <Heart className="h-4 w-4 fill-current text-amber-200" />
-                </div>
               </motion.div>
 
               <p className="text-[10px] font-extrabold uppercase tracking-[0.4em] text-amber-900/80">
@@ -243,12 +240,12 @@ export default function Invitacion() {
               ✕ Cerrar
             </button>
 
-            {/* ENCABEZADO SUPERIOR CON ESPACIADO Y NOMBRE COMPLETO */}
+            {/* ENCABEZADO SUPERIOR */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-center mt-3 mb-2 z-10 w-full"
+              className="text-center mt-3 mb-1 z-10 w-full"
             >
               <p className="font-serif text-[11px] italic tracking-wider text-amber-900/80">
                 Con mucho amor te invitamos a la
@@ -265,13 +262,9 @@ export default function Invitacion() {
                 <Sparkles className="h-3 w-3 text-amber-600" />
                 <div className="h-[1px] w-12 bg-amber-400/60" />
               </div>
-
-              <h2 className="font-serif italic font-extrabold text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent">
-                Merari Catalina
-              </h2>
             </motion.div>
 
-            {/* IMAGEN DEL OSITO CON SU PERGAMINO */}
+            {/* IMAGEN DEL OSITO CON EL NOMBRE COMPLETO DENTRO DEL PERGAMINO */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ 
@@ -284,9 +277,9 @@ export default function Invitacion() {
                 scale: { delay: 0.3, type: "spring", stiffness: 120 },
                 y: { repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: 0.4 } 
               }}
-              className="relative my-2 flex flex-col items-center justify-center z-10 w-full"
+              className="relative my-1 flex flex-col items-center justify-center z-10 w-full"
             >
-              <div className="relative w-44 h-36 md:w-52 md:h-44 flex items-center justify-center drop-shadow-md">
+              <div className="relative w-48 h-40 md:w-56 md:h-48 flex items-center justify-center drop-shadow-md">
                 <Image 
                   src="/oso.png" 
                   alt="Osito con pergamino" 
@@ -294,26 +287,26 @@ export default function Invitacion() {
                   className="object-contain"
                   priority
                 />
-                <div className="absolute inset-x-0 top-[45%] flex items-center justify-center pt-1 pointer-events-none">
-                  <span className="font-serif italic font-extrabold text-lg md:text-xl tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
-                    Merari
+                <div className="absolute inset-x-0 top-[45%] flex items-center justify-center px-6 pt-1 pointer-events-none text-center">
+                  <span className="font-serif italic font-extrabold text-base md:text-lg tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] leading-tight">
+                    Merari Catalina
                   </span>
                 </div>
               </div>
             </motion.div>
 
-            {/* BLOQUE DE TEXTOS CON ESPACIADO CORREGIDO Y AMPLIO */}
+            {/* BLOQUE DE TEXTOS CON ESPACIADO AMPLIO Y CÓMODO */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="my-3 flex flex-col items-center space-y-3 z-10 px-4 text-center"
+              className="my-5 flex flex-col items-center space-y-4 z-10 px-4 text-center"
             >
               <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
-                Será un día lleno de magia y bendiciones. Queremos compartir ese gran momento contigo.
+                Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
               </p>
 
-              <p className="font-serif text-sm italic font-extrabold text-amber-800 tracking-wide pt-1 pb-1">
+              <p className="font-serif text-sm italic font-extrabold text-amber-800 tracking-wide py-1">
                 ¡Te esperamos con los brazos abiertos!
               </p>
             </motion.div>
@@ -322,7 +315,7 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="my-3 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-3 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
+              className="my-2 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-3 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
             >
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
                 <Calendar className="mb-1 h-4 w-4 text-amber-700" />
@@ -351,7 +344,7 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="my-2 w-full text-center z-20"
+              className="my-3 w-full text-center z-20"
             >
               <motion.a
                 whileHover={{ scale: 1.05, shadow: "0 15px 30px rgba(0,0,0,0.4)" }}
