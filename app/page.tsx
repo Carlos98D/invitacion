@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, MessageCircle } from "lucide-react"
+import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, MessageCircle, Volume2, VolumeX } from "lucide-react"
 
 // Componente de Osito SVG Reutilizable
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
@@ -55,27 +55,51 @@ function BearPawIcon({ className = "h-4 w-4" }: { className?: string }) {
 
 export default function Invitacion() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause()
+        setIsPlaying(false)
+      } else {
+        audioRef.current.play()
+        setIsPlaying(true)
+      }
+    }
+  }
 
   const handleOpenEnvelope = () => {
     setIsOpen(true)
-    // Inicia la música automáticamente al hacer clic en el sobre
+    // Comienza a sonar automáticamente al abrir la invitación
     if (audioRef.current) {
-      audioRef.current.play().catch(() => {
-        // Maneja restricciones de reproducción automática del navegador si aplica
+      audioRef.current.play().then(() => {
+        setIsPlaying(true)
+      }).catch(() => {
+        // En caso de que el navegador pida interacción previa
       })
     }
   }
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-[#1c1917] p-2 font-sans text-neutral-800 md:p-6 overflow-hidden">
-      {/* Reproductor de Audio Oculto */}
+      {/* Elemento de audio */}
       <audio
         ref={audioRef}
         src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3"
         loop
         preload="auto"
       />
+
+      {/* Botón flotante para pausar / activar música */}
+      <button
+        onClick={toggleMusic}
+        className="fixed top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/80 text-white shadow-lg backdrop-blur-md transition-transform active:scale-95 hover:bg-amber-600"
+        title={isPlaying ? "Silenciar música" : "Reproducir música"}
+      >
+        {isPlaying ? <Volume2 className="h-5 w-5 animate-pulse" /> : <VolumeX className="h-5 w-5" />}
+      </button>
 
       {/* Efecto de Luz de Fondo */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-neutral-950 to-neutral-950 pointer-events-none" />
@@ -111,7 +135,6 @@ export default function Invitacion() {
             >
               <div className="absolute top-0 h-2 w-32 rounded-b-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 shadow-md" />
 
-              {/* Decoración de huellitas sutiles en las esquinas */}
               <div className="absolute top-4 left-4 text-amber-900/10 rotate-[-20deg]">
                 <BearPawIcon className="h-6 w-6" />
               </div>
@@ -119,7 +142,6 @@ export default function Invitacion() {
                 <BearPawIcon className="h-6 w-6" />
               </div>
 
-              {/* Osito Central */}
               <div className="relative my-4 flex h-36 w-36 items-center justify-center rounded-full bg-amber-100/80 p-4 shadow-inner ring-4 ring-amber-200/50">
                 <BearIllustration />
                 <div className="absolute bottom-1 right-1 rounded-full bg-amber-500 p-1.5 text-white shadow-md">
@@ -143,7 +165,7 @@ export default function Invitacion() {
           </motion.div>
         ) : (
           /* =========================================================
-             VISTA 2: INVITACIÓN ABIERTA CON TEXTOS DE LA IMAGEN
+             VISTA 2: INVITACIÓN ABIERTA
              ========================================================= */
           <motion.main
             key="invitation-view"
@@ -152,7 +174,6 @@ export default function Invitacion() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border border-amber-200/50 bg-[#FAF8F5] px-6 py-8 shadow-2xl md:min-h-[850px] md:max-h-[900px] md:rounded-3xl"
           >
-            {/* Botón opcional para cerrar sobre */}
             <button
               onClick={() => setIsOpen(false)}
               className="self-end rounded-full bg-amber-100/80 px-3 py-1 text-[10px] font-semibold text-amber-800 transition-colors hover:bg-amber-200"
@@ -160,7 +181,6 @@ export default function Invitacion() {
               ✕ Cerrar sobre
             </button>
 
-            {/* Cabecera exactamente como en la imagen */}
             <p className="mt-2 text-center font-serif text-sm italic text-amber-900/80">
               Con mucho amor te invitamos al
             </p>
@@ -174,12 +194,10 @@ export default function Invitacion() {
               de nuestra pequeña
             </p>
 
-            {/* Ilustración de Osito Principal */}
             <div className="relative my-2 flex h-32 w-32 items-center justify-center rounded-full bg-amber-100/60 p-3 shadow-inner ring-2 ring-amber-200/50">
               <BearIllustration />
             </div>
 
-            {/* Texto de dedicatoria de la imagen */}
             <p className="my-3 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-600">
               Será un día muy especial y queremos compartirlo con las personas más importantes en nuestras vidas.
             </p>
@@ -188,9 +206,7 @@ export default function Invitacion() {
               ¡Te esperamos!
             </p>
 
-            {/* SECCIÓN DETALLES (3 Columnas con pequeños iconos/ositos) */}
             <div className="my-3 grid w-full grid-cols-3 gap-2 border-y border-amber-200/60 py-4 text-center">
-              {/* Fecha */}
               <div className="flex flex-col items-center justify-start border-r border-amber-200/60 px-1">
                 <Calendar className="mb-1 h-5 w-5 text-amber-600" />
                 <p className="text-[11px] font-bold text-neutral-800">Sábado</p>
@@ -198,7 +214,6 @@ export default function Invitacion() {
                 <p className="text-[9px] font-medium uppercase text-neutral-500">de noviembre de 2025</p>
               </div>
 
-              {/* Bautizo y Ubicación en 1 columna */}
               <div className="flex flex-col items-center justify-start border-r border-amber-200/60 px-1">
                 <Church className="mb-1 h-5 w-5 text-amber-600" />
                 <p className="text-[11px] font-bold text-neutral-800">Bautizo</p>
@@ -207,7 +222,6 @@ export default function Invitacion() {
                 <p className="text-[10px] text-neutral-600">CDMX</p>
               </div>
 
-              {/* Cumpleaños */}
               <div className="flex flex-col items-center justify-start px-1">
                 <PartyPopper className="mb-1 h-5 w-5 text-amber-600" />
                 <p className="text-[11px] font-bold text-neutral-800">Cumpleaños</p>
@@ -216,10 +230,9 @@ export default function Invitacion() {
               </div>
             </div>
 
-            {/* BOTÓN UBICACIÓN CORTO */}
             <div className="my-3 w-full text-center">
               <a
-                href="https://www.google.com/maps/place/Salon+flamingo+Tultitlan/@19.5935478,-99.1773921,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f77daf733af9:0xa27412d4f0116198!8m2!3d19.5935478!4d-99.1773921!16s%2Fg%2F11sd0vvt6p?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+                href="https://maps.google.com/?q=Gante+5+CDMX"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 px-5 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-md active:scale-95 hover:bg-amber-700"
@@ -229,7 +242,6 @@ export default function Invitacion() {
               </a>
             </div>
 
-            {/* PAPÁS Y PADRINOS */}
             <div className="mt-2 w-full text-center">
               <div className="my-2 rounded-2xl bg-amber-50/70 p-2.5 border border-amber-200/40">
                 <p className="flex items-center justify-center gap-1 font-serif text-xs italic text-amber-800">
@@ -246,7 +258,6 @@ export default function Invitacion() {
               </div>
             </div>
 
-            {/* CONFIRMACIÓN Y BOTÓN DE WHATSAPP DE LA IMAGEN */}
             <div className="mt-4 flex flex-col items-center text-center">
               <p className="max-w-xs font-serif text-[11px] italic text-neutral-500">
                 Tu confirmación te agradecería nos ayudará a organizar todo con amor.
