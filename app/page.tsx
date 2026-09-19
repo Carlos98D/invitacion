@@ -299,7 +299,7 @@ export default function Invitacion() {
             <div className="absolute inset-3 border border-amber-400/40 rounded-[2.3rem] pointer-events-none" />
             <div className="absolute inset-4 border border-dashed border-amber-300/30 rounded-[2rem] pointer-events-none" />
 
-            {/* Botón Cerrar sobre con letras más separadas y alta visibilidad */}
+            {/* Botón Cerrar sobre */}
             <button
               onClick={() => setIsOpen(false)}
               className="self-end z-25 rounded-full bg-amber-100 px-4 py-1.5 text-[11px] font-extrabold tracking-[0.25em] uppercase text-amber-950 transition-all hover:bg-amber-200 hover:scale-105 active:scale-95 shadow-md border border-amber-300/60"
@@ -332,7 +332,7 @@ export default function Invitacion() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-                className="relative my-4 py-2 px-2 text-center"
+                className="relative my-3 py-1 px-2 text-center"
               >
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-amber-500/60" />
@@ -352,12 +352,20 @@ export default function Invitacion() {
               </motion.div>
             </motion.div>
 
-            {/* Ilustración Osito con Aureola Rotativa */}
+            {/* ILUSTRACIÓN OSITO CON EFECTO DE BRINCO (SALTO) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.35, type: "spring", stiffness: 120 }}
-              className="relative my-2 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/90 p-4 shadow-xl ring-4 ring-amber-300/60 z-10"
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                y: [0, -10, 0] // Efecto de salto constante
+              }}
+              transition={{ 
+                opacity: { delay: 0.35 },
+                scale: { delay: 0.35, type: "spring", stiffness: 120 },
+                y: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: 0.5 } // Bucle de brinco suave
+              }}
+              className="relative my-4 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/90 p-4 shadow-xl ring-4 ring-amber-300/60 z-10"
             >
               <BearIllustration />
               <motion.div
@@ -367,24 +375,21 @@ export default function Invitacion() {
               />
             </motion.div>
 
-            {/* Mensaje emotivo */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            {/* ZONA CON MÁS ESPACIO Y RESPIRO */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
-              className="my-2 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-700 z-10"
+              className="my-4 flex flex-col items-center space-y-3 z-10 px-2 text-center"
             >
-              Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
-            </motion.p>
+              <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
+                Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
+              </p>
 
-            <motion.p
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mb-3 font-serif text-base italic font-extrabold text-amber-800 tracking-wide z-10"
-            >
-              ¡Te esperamos con los brazos abiertos!
-            </motion.p>
+              <p className="font-serif text-base italic font-extrabold text-amber-800 tracking-wide">
+                ¡Te esperamos con los brazos abiertos!
+              </p>
+            </motion.div>
 
             {/* TARJETAS DE FECHA Y HORARIOS */}
             <motion.div
@@ -421,7 +426,7 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65 }}
-              className="my-2.5 w-full text-center z-20"
+              className="my-3 w-full text-center z-20"
             >
               <motion.a
                 whileHover={{ scale: 1.05, shadow: "0 15px 30px rgba(0,0,0,0.4)" }}
@@ -436,7 +441,7 @@ export default function Invitacion() {
               </motion.a>
             </motion.div>
 
-            {/* SECCIÓN PAPÁS Y PADRINOS (ACTUALIZADA) */}
+            {/* SECCIÓN PAPÁS Y PADRINOS */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
