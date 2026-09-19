@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, MessageCircle, Volume2, VolumeX, Star } from "lucide-react"
+import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
 
 // Ilustración de Osito SVG Premium con Aureola Dorada
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
@@ -166,7 +167,6 @@ export default function Invitacion() {
     }
   }
 
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=5215536975513&text=Confirmo%20mi%20asistencia`
   const locationUrl = `https://www.google.com/maps/dir//Salon+flamingo+Tultitlan,+Av.+Toluca+Esq,+La+Sarda%C3%B1a,+54090+Buenavista,+M%C3%A9x./@19.6083712,-99.1592448,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x85d1f77daf733af9:0xa27412d4f0116198!2m2!1d-99.1774046!2d19.5935291`
 
   return (
@@ -212,7 +212,7 @@ export default function Invitacion() {
       <AnimatePresence mode="wait">
         {!isOpen ? (
           /* =========================================================
-             VISTA 1: SOBRE DE LUJO TIPO "GALA"
+              VISTA 1: SOBRE DE LUJO TIPO "GALA"
              ========================================================= */
           <motion.div
             key="envelope-view"
@@ -278,7 +278,7 @@ export default function Invitacion() {
           </motion.div>
         ) : (
           /* =========================================================
-             VISTA 2: TARJETA MAGNÍFICA Y OSTENTOSA
+              VISTA 2: TARJETA MAGNÍFICA Y OSTENTOSA
              ========================================================= */
           <motion.main
             key="invitation-view"
@@ -432,7 +432,7 @@ export default function Invitacion() {
               </div>
             </motion.div>
 
-            {/* BOTÓN WHATSAPP DE CONFIRMACIÓN */}
+            {/* BOTÓN NAVEGACIÓN AL FORMULARIO */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -443,17 +443,16 @@ export default function Invitacion() {
                 Tu confirmación nos ayudará a organizar todo con mucho amor.
               </p>
 
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3.5 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-emerald-600 via-emerald-700 to-emerald-800 px-9 py-3.5 text-xs font-black tracking-wider text-white shadow-2xl shadow-emerald-900/40 transition-all border border-emerald-400/30"
-              >
-                <MessageCircle className="h-4 w-4" />
-                <span>Confirmar por WhatsApp</span>
-              </motion.a>
+              <Link href="/formulario">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-3.5 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 px-9 py-3.5 text-xs font-black tracking-wider text-amber-100 shadow-2xl shadow-amber-900/40 transition-all border border-amber-400/40 cursor-pointer"
+                >
+                  <ClipboardList className="h-4 w-4 text-amber-200" />
+                  <span>Confirmar Asistencia</span>
+                </motion.div>
+              </Link>
 
               <p className="mt-4 font-serif text-lg italic font-black text-amber-900">
                 ¡Gracias por acompañarnos!
