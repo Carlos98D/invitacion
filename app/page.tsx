@@ -243,21 +243,35 @@ export default function Invitacion() {
               ✕ Cerrar
             </button>
 
+            {/* ENCABEZADO SUPERIOR CON ESPACIADO Y NOMBRE COMPLETO */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-center mt-2 z-10 w-full"
+              className="text-center mt-3 mb-2 z-10 w-full"
             >
-              <p className="font-serif text-xs italic tracking-widest text-amber-900/85">
-                RECEPCIÓN
+              <p className="font-serif text-[11px] italic tracking-wider text-amber-900/80">
+                Con mucho amor te invitamos a la
               </p>
-              <p className="font-serif text-[11px] italic tracking-wider text-amber-900/60 mt-0.5">
+              <h1 className="font-serif text-lg md:text-xl font-black tracking-widest text-amber-950 uppercase my-1">
+                Ceremonia y Recepción
+              </h1>
+              <p className="font-serif text-[11px] italic tracking-wider text-amber-900/60">
                 de nuestra pequeña
               </p>
+
+              <div className="my-2 flex items-center justify-center gap-2">
+                <div className="h-[1px] w-12 bg-amber-400/60" />
+                <Sparkles className="h-3 w-3 text-amber-600" />
+                <div className="h-[1px] w-12 bg-amber-400/60" />
+              </div>
+
+              <h2 className="font-serif italic font-extrabold text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent">
+                Merari Catalina
+              </h2>
             </motion.div>
 
-            {/* IMAGEN DEL OSITO CON SU PERGAMINO Y EL NOMBRE DE MERARI INTEGRADO */}
+            {/* IMAGEN DEL OSITO CON SU PERGAMINO */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ 
@@ -272,7 +286,7 @@ export default function Invitacion() {
               }}
               className="relative my-2 flex flex-col items-center justify-center z-10 w-full"
             >
-              <div className="relative w-56 h-48 md:w-64 md:h-56 flex items-center justify-center drop-shadow-md">
+              <div className="relative w-44 h-36 md:w-52 md:h-44 flex items-center justify-center drop-shadow-md">
                 <Image 
                   src="/oso.png" 
                   alt="Osito con pergamino" 
@@ -281,7 +295,7 @@ export default function Invitacion() {
                   priority
                 />
                 <div className="absolute inset-x-0 top-[45%] flex items-center justify-center pt-1 pointer-events-none">
-                  <span className="font-serif italic font-extrabold text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
+                  <span className="font-serif italic font-extrabold text-lg md:text-xl tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">
                     Merari
                   </span>
                 </div>
