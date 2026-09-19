@@ -5,46 +5,110 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
 
-// Ilustración de Osito SVG Premium con Aureola Dorada
-function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
+// Ilustración de Osito Sosteniendo Pergamino con el Nombre "Merari"
+function BearWithScrollIllustration({ className = "h-full w-full" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 240 240" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="bearGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.4" />
           <stop offset="100%" stopColor="#D97706" stopOpacity="0" />
         </radialGradient>
+        <linearGradient id="scrollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFFDF9" />
+          <stop offset="50%" stopColor="#F4EAD2" />
+          <stop offset="100%" stopColor="#E4D2B3" />
+        </linearGradient>
+        <linearGradient id="scrollRoll" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#C49A6C" />
+          <stop offset="50%" stopColor="#E5C396" />
+          <stop offset="100%" stopColor="#A4794C" />
+        </linearGradient>
       </defs>
-      
+
       {/* Resplandor de fondo */}
-      <circle cx="100" cy="100" r="90" fill="url(#bearGlow)" />
+      <circle cx="120" cy="120" r="110" fill="url(#bearGlow)" />
 
-      {/* Orejas */}
-      <circle cx="55" cy="55" r="28" fill="#B8860B" />
-      <circle cx="55" cy="55" r="16" fill="#FDFBF7" />
-      <circle cx="145" cy="55" r="28" fill="#B8860B" />
-      <circle cx="145" cy="55" r="16" fill="#FDFBF7" />
+      {/* Orejas del osito */}
+      <circle cx="75" cy="65" r="30" fill="#B8860B" />
+      <circle cx="75" cy="65" r="18" fill="#FDFBF7" />
+      <circle cx="165" cy="65" r="30" fill="#B8860B" />
+      <circle cx="165" cy="65" r="18" fill="#FDFBF7" />
 
-      {/* Cabeza */}
-      <circle cx="100" cy="100" r="65" fill="#C59B6C" />
+      {/* Cabeza del osito */}
+      <circle cx="120" cy="110" r="70" fill="#C59B6C" />
 
-      {/* Ojos brillantes */}
-      <circle cx="75" cy="90" r="6.5" fill="#2A2421" />
-      <circle cx="125" cy="90" r="6.5" fill="#2A2421" />
-      <circle cx="77" cy="87.5" r="2.5" fill="#FFFFFF" />
-      <circle cx="127" cy="87.5" r="2.5" fill="#FFFFFF" />
+      {/* Ojos */}
+      <circle cx="95" cy="100" r="7" fill="#2A2421" />
+      <circle cx="145" cy="100" r="7" fill="#2A2421" />
+      <circle cx="97" cy="97" r="2.5" fill="#FFFFFF" />
+      <circle cx="147" cy="97" r="2.5" fill="#FFFFFF" />
 
       {/* Hocico */}
-      <ellipse cx="100" cy="115" rx="25" ry="19" fill="#FDFBF7" />
-      <ellipse cx="100" cy="106" rx="8" ry="5.5" fill="#2A2421" />
+      <ellipse cx="120" cy="126" rx="28" ry="21" fill="#FDFBF7" />
+      <ellipse cx="120" cy="117" rx="9" ry="6" fill="#2A2421" />
       <path
-        d="M 100 111.5 C 100 119, 93 123, 89 119 M 100 111.5 C 100 119, 107 123, 111 119"
+        d="M 120 123 C 120 131, 112 135, 107 131 M 120 123 C 120 131, 128 135, 133 131"
         stroke="#2A2421"
-        strokeWidth="2.5"
+        strokeWidth="3"
         strokeLinecap="round"
       />
 
       {/* Mejillas */}
+      <circle cx="80" cy="118" r="8" fill="#E89B88" opacity="0.5" />
+      <circle cx="160" cy="118" r="8" fill="#E89B88" opacity="0.5" />
+
+      {/* Paticas / Brazos sujetando el pergamino */}
+      <ellipse cx="75" cy="170" rx="16" ry="13" fill="#B8860B" />
+      <ellipse cx="165" cy="170" rx="16" ry="13" fill="#B8860B" />
+
+      {/* PERGAMINO PRINCIPAL */}
+      <g filter="drop-shadow(0px 6px 12px rgba(0,0,0,0.18))">
+        {/* Cuerpo del pergamino */}
+        <rect x="45" y="145" width="150" height="60" rx="6" fill="url(#scrollGrad)" stroke="#B8860B" strokeWidth="1.5" />
+        
+        {/* Rollos de los extremos (Izquierdo y Derecho) */}
+        <ellipse cx="45" cy="175" rx="8" ry="32" fill="url(#scrollRoll)" stroke="#8C5830" strokeWidth="1.5" />
+        <ellipse cx="195" cy="175" rx="8" ry="32" fill="url(#scrollRoll)" stroke="#8C5830" strokeWidth="1.5" />
+
+        {/* Pequeños destellos decorativos en el pergamino */}
+        <path d="M 62 160 L 64 165 L 69 167 L 64 169 L 62 174 L 60 169 L 55 167 L 60 165 Z" fill="#D97706" opacity="0.6" />
+        <path d="M 178 160 L 180 165 L 185 167 L 180 169 L 178 174 L 176 169 L 171 167 L 176 165 Z" fill="#D97706" opacity="0.6" />
+
+        {/* Texto grabado "Merari" dentro del pergamino */}
+        <text
+          x="120"
+          y="183"
+          textAnchor="middle"
+          fontFamily="serif"
+          fontStyle="italic"
+          fontWeight="bold"
+          fontSize="26"
+          fill="#78350F"
+          letterSpacing="1px"
+        >
+          Merari
+        </text>
+      </g>
+    </svg>
+  )
+}
+
+function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 200" className={className} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="55" cy="55" r="28" fill="#B8860B" />
+      <circle cx="55" cy="55" r="16" fill="#FDFBF7" />
+      <circle cx="145" cy="55" r="28" fill="#B8860B" />
+      <circle cx="145" cy="55" r="16" fill="#FDFBF7" />
+      <circle cx="100" cy="100" r="65" fill="#C59B6C" />
+      <circle cx="75" cy="90" r="6.5" fill="#2A2421" />
+      <circle cx="125" cy="90" r="6.5" fill="#2A2421" />
+      <circle cx="77" cy="87.5" r="2.5" fill="#FFFFFF" />
+      <circle cx="127" cy="87.5" r="2.5" fill="#FFFFFF" />
+      <ellipse cx="100" cy="115" rx="25" ry="19" fill="#FDFBF7" />
+      <ellipse cx="100" cy="106" rx="8" ry="5.5" fill="#2A2421" />
+      <path d="M 100 111.5 C 100 119, 93 123, 89 119 M 100 111.5 C 100 119, 107 123, 111 119" stroke="#2A2421" strokeWidth="2.5" strokeLinecap="round" />
       <circle cx="62" cy="105" r="7.5" fill="#E89B88" opacity="0.45" />
       <circle cx="138" cy="105" r="7.5" fill="#E89B88" opacity="0.45" />
     </svg>
@@ -74,7 +138,6 @@ function CornerOrnament({ className = "" }: { className?: string }) {
   )
 }
 
-// Lluvia constante de Destellos de Oro
 function GoldSparkles() {
   const sparkles = Array.from({ length: 22 })
   return (
@@ -111,7 +174,6 @@ export default function Invitacion() {
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // Autoplay al interactuar por primera vez
   useEffect(() => {
     const handleFirstInteraction = () => {
       if (audioRef.current && audioRef.current.paused) {
@@ -120,16 +182,13 @@ export default function Invitacion() {
         }).catch(() => {})
       }
     }
-
     window.addEventListener("click", handleFirstInteraction, { once: true })
     return () => window.removeEventListener("click", handleFirstInteraction)
   }, [])
 
-  // Pausa automática al salir del navegador
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!audioRef.current) return
-
       if (document.hidden) {
         audioRef.current.pause()
         setIsPlaying(false)
@@ -139,7 +198,6 @@ export default function Invitacion() {
         }).catch(() => {})
       }
     }
-
     document.addEventListener("visibilitychange", handleVisibilityChange)
     return () => document.removeEventListener("visibilitychange", handleVisibilityChange)
   }, [isOpen])
@@ -147,7 +205,6 @@ export default function Invitacion() {
   const toggleMusic = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (!audioRef.current) return
-
     if (isPlaying) {
       audioRef.current.pause()
       setIsPlaying(false)
@@ -180,7 +237,6 @@ export default function Invitacion() {
 
       <GoldSparkles />
 
-      {/* BOTÓN MÚSICA ESQUINA INFERIOR DERECHA */}
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -206,14 +262,10 @@ export default function Invitacion() {
         </motion.button>
       </motion.div>
 
-      {/* Resplandor ambiental de fondo */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-950/40 via-[#0F0D0C] to-[#050404] pointer-events-none" />
 
       <AnimatePresence mode="wait">
         {!isOpen ? (
-          /* =========================================================
-             VISTA 1: SOBRE INICIAL
-             ========================================================= */
           <motion.div
             key="envelope-view"
             initial={{ opacity: 0, scale: 0.85, y: 30 }}
@@ -250,7 +302,6 @@ export default function Invitacion() {
                 <BearPawIcon className="h-8 w-8" />
               </div>
 
-              {/* Marco con osito centrado */}
               <motion.div
                 animate={{ scale: [1, 1.04, 1] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -279,9 +330,6 @@ export default function Invitacion() {
             </motion.button>
           </motion.div>
         ) : (
-          /* =========================================================
-             VISTA 2: TARJETA INTERNA
-             ========================================================= */
           <motion.main
             key="invitation-view"
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -289,17 +337,14 @@ export default function Invitacion() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-400/50 bg-[#FDFBF7] px-6 py-8 shadow-[0_30px_100px_rgba(217,119,6,0.3)] md:min-h-[890px] md:max-h-[950px] md:rounded-[2.8rem]"
           >
-            {/* Filigranas en las 4 esquinas */}
             <CornerOrnament className="absolute top-2 left-2" />
             <CornerOrnament className="absolute top-2 right-2 rotate-90" />
             <CornerOrnament className="absolute bottom-2 left-2 -rotate-90" />
             <CornerOrnament className="absolute bottom-2 right-2 rotate-180" />
 
-            {/* Marco dorado interior */}
             <div className="absolute inset-3 border border-amber-400/40 rounded-[2.3rem] pointer-events-none" />
             <div className="absolute inset-4 border border-dashed border-amber-300/30 rounded-[2rem] pointer-events-none" />
 
-            {/* Botón Cerrar sobre */}
             <button
               onClick={() => setIsOpen(false)}
               className="self-end z-25 rounded-full bg-amber-100 px-4 py-1.5 text-[11px] font-extrabold tracking-[0.25em] uppercase text-amber-950 transition-all hover:bg-amber-200 hover:scale-105 active:scale-95 shadow-md border border-amber-300/60"
@@ -307,7 +352,6 @@ export default function Invitacion() {
               ✕ Cerrar
             </button>
 
-            {/* Encabezado Principal */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -327,7 +371,6 @@ export default function Invitacion() {
                 de nuestra pequeña
               </p>
 
-              {/* SECCIÓN TIPOGRÁFICA DE "MERARI CATALINA" */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -352,7 +395,7 @@ export default function Invitacion() {
               </motion.div>
             </motion.div>
 
-            {/* ILUSTRACIÓN OSITO CON EFECTO DE BRINCO (SALTO) */}
+            {/* ILUSTRACIÓN DEL OSITO CON PERGAMINO Y EFECTO DE BRINCO */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ 
@@ -363,24 +406,18 @@ export default function Invitacion() {
               transition={{ 
                 opacity: { delay: 0.35 },
                 scale: { delay: 0.35, type: "spring", stiffness: 120 },
-                y: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: 0.5 } // Bucle de brinco suave
+                y: { repeat: Infinity, duration: 2, ease: "easeInOut", delay: 0.5 } 
               }}
-              className="relative my-4 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/90 p-4 shadow-xl ring-4 ring-amber-300/60 z-10"
+              className="relative my-3 flex h-40 w-44 items-center justify-center z-10"
             >
-              <BearIllustration />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -inset-1 rounded-full border-2 border-dashed border-amber-400/60 pointer-events-none"
-              />
+              <BearWithScrollIllustration />
             </motion.div>
 
-            {/* ZONA CON MÁS ESPACIO Y RESPIRO */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
-              className="my-4 flex flex-col items-center space-y-3 z-10 px-2 text-center"
+              className="my-3 flex flex-col items-center space-y-3 z-10 px-2 text-center"
             >
               <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
                 Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
@@ -391,7 +428,6 @@ export default function Invitacion() {
               </p>
             </motion.div>
 
-            {/* TARJETAS DE FECHA Y HORARIOS */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
@@ -421,7 +457,6 @@ export default function Invitacion() {
               </motion.div>
             </motion.div>
 
-            {/* BOTÓN UBICACIÓN REAL DE GOOGLE MAPS */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -441,7 +476,6 @@ export default function Invitacion() {
               </motion.a>
             </motion.div>
 
-            {/* SECCIÓN PAPÁS Y PADRINOS */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -463,7 +497,6 @@ export default function Invitacion() {
               </div>
             </motion.div>
 
-            {/* BOTÓN NAVEGACIÓN AL FORMULARIO */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
