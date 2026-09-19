@@ -212,7 +212,7 @@ export default function Invitacion() {
       <AnimatePresence mode="wait">
         {!isOpen ? (
           /* =========================================================
-              VISTA 1: SOBRE INICIAL (TAL COMO EN LA PRIMERA IMAGEN)
+              VISTA 1: SOBRE INICIAL
              ========================================================= */
           <motion.div
             key="envelope-view"
@@ -266,12 +266,12 @@ export default function Invitacion() {
                 Nuestra Pequeña
               </p>
               
-              {/* RESTAURADO EXACTAMENTE COMO EN LA FOTO 1 */}
               <h2 className="my-1 font-serif text-2xl font-bold tracking-tight text-[#2A2421]">
-                Bautizo &amp; Primer Cumpleaños
+                Ceremonia &amp; Primer Cumpleaños
               </h2>
 
-              <p className="text-[11px] font-medium text-neutral-500 mt-1">Sábado 14 de Noviembre</p>
+              {/* FECHA ACTUALIZADA */}
+              <p className="text-[11px] font-medium text-neutral-500 mt-1">Sábado 28 de Noviembre</p>
 
               <div className="mt-7 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
                 <MailOpen className="h-4 w-4 text-amber-200" />
@@ -281,7 +281,7 @@ export default function Invitacion() {
           </motion.div>
         ) : (
           /* =========================================================
-              VISTA 2: TARJETA INTERNA (TAL COMO EN LA SEGUNDA IMAGEN)
+              VISTA 2: TARJETA INTERNA
              ========================================================= */
           <motion.main
             key="invitation-view"
@@ -320,7 +320,7 @@ export default function Invitacion() {
               </p>
 
               <h1 className="my-2 font-serif text-2xl font-bold uppercase tracking-wider bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
-                Bautizo y <br />
+                Ceremonia y <br />
                 Primer Cumpleaños
               </h1>
 
@@ -328,26 +328,23 @@ export default function Invitacion() {
                 de nuestra pequeña
               </p>
 
-              {/* SECCIÓN TIPOGRÁFICA DE "MERARI CATALINA" CON ELEGANCIA */}
+              {/* SECCIÓN TIPOGRÁFICA DE "MERARI CATALINA" */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
                 className="relative my-4 py-2 px-2 text-center"
               >
-                {/* Adorno superior sutil */}
                 <div className="flex items-center justify-center gap-2 mb-1">
                   <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-amber-500/60" />
                   <Sparkles className="h-3 w-3 text-amber-600/70" />
                   <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-amber-500/60" />
                 </div>
 
-                {/* NOMBRE ELEGANTE EN LA TARJETA INTERNA */}
                 <h2 className="font-serif italic text-4xl md:text-5xl font-extrabold tracking-wide leading-tight bg-gradient-to-r from-amber-900 via-amber-600 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(217,119,6,0.15)]">
                   Merari Catalina
                 </h2>
 
-                {/* Adorno inferior sutil */}
                 <div className="flex items-center justify-center gap-2 mt-1">
                   <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-500/60" />
                   <div className="h-1.5 w-1.5 rotate-45 bg-amber-500/80" />
@@ -390,7 +387,7 @@ export default function Invitacion() {
               ¡Te esperamos con los brazos abiertos!
             </motion.p>
 
-            {/* TARJETAS DE FECHA Y HORARIOS */}
+            {/* TARJETAS DE FECHA Y HORARIOS (MODIFICADO A CEREMONIA Y FECHA 28) */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
@@ -400,13 +397,13 @@ export default function Invitacion() {
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
                 <Calendar className="mb-1 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
-                <p className="my-0.5 font-serif text-2xl font-black text-amber-700">14</p>
+                <p className="my-0.5 font-serif text-2xl font-black text-amber-700">28</p>
                 <p className="text-[9px] font-semibold uppercase text-neutral-500">Noviembre 2025</p>
               </motion.div>
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
                 <Church className="mb-1 h-5 w-5 text-amber-700" />
-                <p className="text-[11px] font-bold text-[#2A2421]">Bautizo</p>
+                <p className="text-[11px] font-bold text-[#2A2421]">Ceremonia</p>
                 <p className="text-[10px] font-extrabold text-amber-900">11:00 a.m.</p>
                 <p className="mt-1 text-[10px] font-medium text-neutral-600">Gante 5</p>
                 <p className="text-[10px] font-medium text-neutral-600">CDMX</p>
