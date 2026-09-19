@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Sparkles, CheckCircle, Send, User, Users, Phone, Baby, Plus, Minus } from "lucide-react"
 
 // URL DE TU GOOGLE APPS SCRIPT
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbywPNGstGiPC4tz68DK4QkYIW8GE46drgvr61Osb4ULOfR3KFnII7RqiYIC79EQq8td/exec"
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxiW6un4T4S68g4ARkalplLuAUx0aGhn3Yr46BOVg_Hgghzt0QCgl6atsnm4fW0PNuB/exec"
 
 // Límite máximo global de invitados permitidos
 const MAX_INVITADOS_TOTAL = 200
