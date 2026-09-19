@@ -212,7 +212,7 @@ export default function Invitacion() {
       <AnimatePresence mode="wait">
         {!isOpen ? (
           /* =========================================================
-              VISTA 1: SOBRE INICIAL
+             VISTA 1: SOBRE INICIAL
              ========================================================= */
           <motion.div
             key="envelope-view"
@@ -280,7 +280,7 @@ export default function Invitacion() {
           </motion.div>
         ) : (
           /* =========================================================
-              VISTA 2: TARJETA INTERNA
+             VISTA 2: TARJETA INTERNA
              ========================================================= */
           <motion.main
             key="invitation-view"
@@ -299,10 +299,10 @@ export default function Invitacion() {
             <div className="absolute inset-3 border border-amber-400/40 rounded-[2.3rem] pointer-events-none" />
             <div className="absolute inset-4 border border-dashed border-amber-300/30 rounded-[2rem] pointer-events-none" />
 
-            {/* Botón Cerrar sobre */}
+            {/* Botón Cerrar sobre con letras más separadas y alta visibilidad */}
             <button
               onClick={() => setIsOpen(false)}
-              className="self-end z-20 rounded-full bg-amber-100/80 px-4 py-1 text-[10px] font-bold tracking-widest uppercase text-amber-900 transition-all hover:bg-amber-200 hover:scale-105 active:scale-95 shadow-sm"
+              className="self-end z-25 rounded-full bg-amber-100 px-4 py-1.5 text-[11px] font-extrabold tracking-[0.25em] uppercase text-amber-950 transition-all hover:bg-amber-200 hover:scale-105 active:scale-95 shadow-md border border-amber-300/60"
             >
               ✕ Cerrar
             </button>
