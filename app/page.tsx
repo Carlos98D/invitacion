@@ -212,7 +212,7 @@ export default function Invitacion() {
       <AnimatePresence mode="wait">
         {!isOpen ? (
           /* =========================================================
-              VISTA 1: SOBRE DE LUJO TIPO "GALA"
+              VISTA 1: SOBRE INICIAL (TAL COMO EN LA PRIMERA IMAGEN)
              ========================================================= */
           <motion.div
             key="envelope-view"
@@ -266,11 +266,11 @@ export default function Invitacion() {
                 Nuestra Pequeña
               </p>
               
-              <h2 className="my-1 font-serif italic text-3xl font-bold tracking-wide bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 bg-clip-text text-transparent">
-                Merari Catalina
+              {/* RESTAURADO EXACTAMENTE COMO EN LA FOTO 1 */}
+              <h2 className="my-1 font-serif text-2xl font-bold tracking-tight text-[#2A2421]">
+                Bautizo &amp; Primer Cumpleaños
               </h2>
 
-              <p className="text-xs font-semibold text-neutral-600 tracking-wider">Bautizo &amp; Primer Cumpleaños</p>
               <p className="text-[11px] font-medium text-neutral-500 mt-1">Sábado 14 de Noviembre</p>
 
               <div className="mt-7 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
@@ -281,7 +281,7 @@ export default function Invitacion() {
           </motion.div>
         ) : (
           /* =========================================================
-              VISTA 2: TARJETA MAGNÍFICA Y ELEGANTE
+              VISTA 2: TARJETA INTERNA (TAL COMO EN LA SEGUNDA IMAGEN)
              ========================================================= */
           <motion.main
             key="invitation-view"
@@ -328,7 +328,7 @@ export default function Invitacion() {
                 de nuestra pequeña
               </p>
 
-              {/* SECCIÓN TIPOGRÁFICA DE ALTA ALCURNIA Y ELEGANCIA */}
+              {/* SECCIÓN TIPOGRÁFICA DE "MERARI CATALINA" CON ELEGANCIA */}
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -342,7 +342,7 @@ export default function Invitacion() {
                   <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-amber-500/60" />
                 </div>
 
-                {/* NOMBRE REINANTE: TIPOGRAFÍA CURSIVA SERIF CON PERSONALIDAD */}
+                {/* NOMBRE ELEGANTE EN LA TARJETA INTERNA */}
                 <h2 className="font-serif italic text-4xl md:text-5xl font-extrabold tracking-wide leading-tight bg-gradient-to-r from-amber-900 via-amber-600 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(217,119,6,0.15)]">
                   Merari Catalina
                 </h2>
@@ -390,7 +390,7 @@ export default function Invitacion() {
               ¡Te esperamos con los brazos abiertos!
             </motion.p>
 
-            {/* TARJETAS DE FECHA Y HORARIOS (Tarjetas con relieve) */}
+            {/* TARJETAS DE FECHA Y HORARIOS */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
