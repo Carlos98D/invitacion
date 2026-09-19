@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, Volume2, VolumeX, Star, CheckCircle, Send, User, Users, Phone, Baby } from "lucide-react"
 
 // PEGA AQUÍ LA URL DE TU GOOGLE APPS SCRIPT
-const GOOGLE_SCRIPT_URL = "AQUÍ_PEGA_TU_URL_DE_GOOGLE_APPS_SCRIPT"
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyTQxuY6UWUe86ZnDUOGru9eQT182zW56r1vcG83d4z2__UM3JYVtIk9nyhgQjg_Dw/exec"
 
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
   return (
@@ -174,12 +174,15 @@ export default function Invitacion() {
     setIsSubmitting(true)
 
     try {
-      await fetch(https://script.google.com/macros/s/AKfycbyTQxuY6UWUe86ZnDUOGru9eQT182zW56r1vcG83d4z2__UM3JYVtIk9nyhgQjg_Dw/exec, {
+      await fetch("https://script.google.com/macros/s/AKfycbyTQxuY6UWUe86ZnDUOGru9eQT182zW56r1vcG83d4z2__UM3JYVtIk9nyhgQjg_Dw/exec", {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
+
+
+   
 
       setIsSubmitted(true)
     } catch (error) {
