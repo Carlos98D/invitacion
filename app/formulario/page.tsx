@@ -95,7 +95,7 @@ export default function Page() {
             <Sparkles className="h-5 w-5 text-amber-600" />
           </h1>
           <p className="font-serif text-xs italic text-neutral-600 mt-1">
-            Por favor ingresa tus datos para registrar tu grupo.
+            Por favor ingresa tus datos para registrar a tu familia.
           </p>
         </div>
 
