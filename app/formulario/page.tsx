@@ -2,15 +2,14 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Sparkles, CheckCircle, Send, User, Users, Phone, Baby, Plus, Minus } from "lucide-react"
+import { Sparkles, CheckCircle, Send, User, Users, Phone, Baby, Plus, Minus, AlertCircle } from "lucide-react"
 
 // URL DE TU GOOGLE APPS SCRIPT
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxiW6un4T4S68g4ARkalplLuAUx0aGhn3Yr46BOVg_Hgghzt0QCgl6atsnm4fW0PNuB/exec"
 
-// Límite máximo global de invitados permitidos
 const MAX_INVITADOS_TOTAL = 200
 
-export default function FormularioPage() {
+export default function Page() {
   const [formData, setFormData] = useState({
     nombre: "",
     adultos: 1,
@@ -18,11 +17,11 @@ export default function FormularioPage() {
     telefono: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submissionState, setSubmissionState] = useState<"idle" | "success" | "full" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
 
   const totalInvitadosActuales = formData.adultos + formData.ninos
 
-  // Funciones para manejar los contadores de Adultos
   const incrementarAdultos = () => {
     if (totalInvitadosActuales < MAX_INVITADOS_TOTAL) {
       setFormData((prev) => ({ ...prev, adultos: prev.adultos + 1 }))
@@ -30,12 +29,11 @@ export default function FormularioPage() {
   }
 
   const decrementarAdultos = () => {
-    if (formData.adultos > 1) { // Mínimo 1 adulto por registro
+    if (formData.adultos > 1) {
       setFormData((prev) => ({ ...prev, adultos: prev.adultos - 1 }))
     }
   }
 
-  // Funciones para manejar los contadores de Niños
   const incrementarNinos = () => {
     if (totalInvitadosActuales < MAX_INVITADOS_TOTAL) {
       setFormData((prev) => ({ ...prev, ninos: prev.ninos + 1 }))
@@ -50,26 +48,31 @@ export default function FormularioPage() {
 
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    if (totalInvitadosActuales > MAX_INVITADOS_TOTAL) {
-      alert(`El número total de invitados no puede superar los ${MAX_INVITADOS_TOTAL}.`)
-      return
-    }
-
     setIsSubmitting(true)
+    setErrorMessage("")
 
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(formData),
       })
 
-      setIsSubmitted(true)
+      const result = await response.json()
+
+      if (result.status === "success") {
+        setSubmissionState("success")
+      } else if (result.status === "full") {
+        setSubmissionState("full")
+        setErrorMessage(result.message)
+      } else {
+        setSubmissionState("error")
+        setErrorMessage(result.message || "Ocurrió un error inesperado.")
+      }
     } catch (error) {
       console.error("Error al enviar asistencia:", error)
-      alert("Ocurrió un error al enviar tu respuesta. Intenta de nuevo.")
+      setSubmissionState("error")
+      setErrorMessage("No se pudo conectar con el servidor. Intenta nuevamente.")
     } finally {
       setIsSubmitting(false)
     }
@@ -77,7 +80,6 @@ export default function FormularioPage() {
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-[#0F0D0C] p-4 font-sans text-[#2A2421] md:p-6 overflow-hidden selection:bg-amber-300">
-      {/* Resplandor de fondo */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-950/40 via-[#0F0D0C] to-[#050404] pointer-events-none" />
 
       <motion.div
@@ -93,11 +95,12 @@ export default function FormularioPage() {
             <Sparkles className="h-5 w-5 text-amber-600" />
           </h1>
           <p className="font-serif text-xs italic text-neutral-600 mt-1">
-            Por favor ingresa tus datos para registrar tu asistencia.
+            Por favor ingresa tus datos para registrar tu grupo.
           </p>
         </div>
 
-        {isSubmitted ? (
+        {/* SI EL REGISTRO FUE EXITOSO */}
+        {submissionState === "success" && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -111,7 +114,56 @@ export default function FormularioPage() {
               Tus datos se enviaron exitosamente. ¡Muchas gracias!
             </p>
           </motion.div>
-        ) : (
+        )}
+
+        {/* SI EL CUPO ESTÁ LLENO (Llegó a los 200) */}
+        {submissionState === "full" && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center justify-center py-8 text-center"
+          >
+            <AlertCircle className="h-14 w-14 text-amber-700 mb-3" />
+            <h2 className="font-serif text-lg font-bold text-amber-950">
+              No se pudo completar el registro
+            </h2>
+            <p className="text-xs text-amber-900 mt-2 font-medium bg-amber-200/60 p-3 rounded-xl border border-amber-300">
+              {errorMessage}
+            </p>
+            <button
+              onClick={() => setSubmissionState("idle")}
+              className="mt-5 text-xs text-amber-800 underline font-bold"
+            >
+              Intentar de nuevo con menos personas
+            </button>
+          </motion.div>
+        )}
+
+        {/* SI OCURRIÓ UN ERROR GENÉRICO */}
+        {submissionState === "error" && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex flex-col items-center justify-center py-8 text-center"
+          >
+            <AlertCircle className="h-14 w-14 text-red-600 mb-3" />
+            <h2 className="font-serif text-lg font-bold text-amber-950">
+              Ocurrió un error
+            </h2>
+            <p className="text-xs text-red-800 mt-2 font-medium bg-red-100 p-3 rounded-xl border border-red-200">
+              {errorMessage}
+            </p>
+            <button
+              onClick={() => setSubmissionState("idle")}
+              className="mt-5 text-xs text-amber-800 underline font-bold"
+            >
+              Regresar al formulario
+            </button>
+          </motion.div>
+        )}
+
+        {/* FORMULARIO */}
+        {submissionState === "idle" && (
           <form onSubmit={handleSubmitForm} className="flex flex-col gap-5 text-left">
             {/* NOMBRE */}
             <div>
@@ -128,9 +180,8 @@ export default function FormularioPage() {
               />
             </div>
 
-            {/* CONTADORES DE ADULTOS Y NIÑOS */}
+            {/* CONTADORES */}
             <div className="grid grid-cols-2 gap-3">
-              {/* CONTADOR ADULTOS */}
               <div className="flex flex-col items-center rounded-2xl border border-amber-300/80 bg-white/80 p-3 shadow-inner">
                 <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-2 flex items-center gap-1">
                   <Users className="h-4 w-4 text-amber-700" /> Adultos:
@@ -158,7 +209,6 @@ export default function FormularioPage() {
                 </div>
               </div>
 
-              {/* CONTADOR NIÑOS */}
               <div className="flex flex-col items-center rounded-2xl border border-amber-300/80 bg-white/80 p-3 shadow-inner">
                 <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-2 flex items-center gap-1">
                   <Baby className="h-4 w-4 text-amber-700" /> Niños:
@@ -187,9 +237,8 @@ export default function FormularioPage() {
               </div>
             </div>
 
-            {/* MUESTRA DEL TOTAL SELECCIONADO */}
             <div className="text-center font-serif text-xs italic text-amber-900">
-              Total de personas a registrar: <span className="font-bold text-amber-950">{totalInvitadosActuales}</span> (Máximo {MAX_INVITADOS_TOTAL})
+              Total de personas a registrar: <span className="font-bold text-amber-950">{totalInvitadosActuales}</span>
             </div>
 
             {/* TELÉFONO */}
