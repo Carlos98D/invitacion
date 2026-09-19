@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star } from "lucide-react"
+import { MapPin, Church, PartyPopper, Heart, Sparkles, MailOpen, Calendar, ClipboardList, Volume2, VolumeX, Star, Crown } from "lucide-react"
 
 // Ilustración de Osito SVG Premium con Aureola Dorada
 function BearIllustration({ className = "h-full w-full" }: { className?: string }) {
@@ -263,14 +263,18 @@ export default function Invitacion() {
               </motion.div>
 
               <p className="text-[10px] font-extrabold uppercase tracking-[0.4em] text-amber-900/80">
-                Nuestra Pequeña
+                Nuestra Reina
               </p>
-              <h2 className="my-2 font-serif text-2xl font-bold tracking-wide text-[#2A2421]">
-                Bautizo &amp; Primer Cumpleaños
+              
+              {/* Nombre de gala en el sobre */}
+              <h2 className="my-1 font-serif italic text-3xl font-extrabold tracking-wide bg-gradient-to-r from-amber-900 via-amber-700 to-amber-900 bg-clip-text text-transparent">
+                Merari Catalina
               </h2>
-              <p className="text-xs font-semibold text-neutral-500">Sábado 14 de Noviembre</p>
 
-              <div className="mt-8 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
+              <p className="text-xs font-bold text-amber-800/90 tracking-wider">Bautizo &amp; 1<sup>er</sup> Año</p>
+              <p className="text-[11px] font-semibold text-neutral-500 mt-1">Sábado 14 de Noviembre</p>
+
+              <div className="mt-7 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
                 <MailOpen className="h-4 w-4 text-amber-200" />
                 <span>Abrir Invitación</span>
               </div>
@@ -285,7 +289,7 @@ export default function Invitacion() {
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-400/50 bg-[#FDFBF7] px-6 py-8 shadow-[0_30px_100px_rgba(217,119,6,0.3)] md:min-h-[890px] md:max-h-[930px] md:rounded-[2.8rem]"
+            className="relative z-10 flex min-h-screen w-full max-w-md flex-col items-center overflow-y-auto border-2 border-amber-400/50 bg-[#FDFBF7] px-6 py-8 shadow-[0_30px_100px_rgba(217,119,6,0.3)] md:min-h-[890px] md:max-h-[950px] md:rounded-[2.8rem]"
           >
             {/* Filigranas en las 4 esquinas */}
             <CornerOrnament className="absolute top-2 left-2" />
@@ -310,25 +314,48 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-center mt-1 z-10"
+              className="text-center mt-1 z-10 w-full"
             >
-              <p className="font-serif text-xs italic tracking-widest text-amber-900">
-                Con mucho amor te invitamos al
+              <p className="font-serif text-xs italic tracking-widest text-amber-900/80 uppercase">
+                Con la bendición de Dios te invitamos al
               </p>
 
-              <h1 className="my-2 font-serif text-3xl font-extrabold leading-snug tracking-wide bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
+              <h1 className="my-1.5 font-serif text-2xl font-black uppercase tracking-widest bg-gradient-to-b from-[#2A2421] via-[#3D322C] to-[#1A1614] bg-clip-text text-transparent drop-shadow-sm">
                 Bautizo y <br />
                 Primer Cumpleaños
               </h1>
 
-              <p className="font-serif text-xs italic text-amber-900">
-                de nuestra pequeña
+              <p className="font-serif text-xs italic text-amber-900/80">
+                de nuestra adorada princesa
               </p>
 
-              {/* Nombre de la festejada */}
-              <h2 className="mt-1 font-serif text-2xl font-bold tracking-wide text-amber-800 drop-shadow-sm">
-                Merari Catalina
-              </h2>
+              {/* CONTENEDOR RECTANGULAR DE GALA PARA MERARI CATALINA */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+                className="relative my-3.5 mx-auto w-full max-w-[320px] rounded-3xl border-2 border-amber-400/60 bg-gradient-to-r from-amber-100/90 via-amber-50 to-amber-100/90 px-4 py-3 shadow-[0_10px_30px_rgba(217,119,6,0.15)] backdrop-blur-sm"
+              >
+                {/* Corona decorativa superior */}
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600 p-1.5 shadow-md border border-amber-200">
+                  <Crown className="h-4 w-4 text-amber-950 fill-amber-300" />
+                </div>
+
+                <div className="flex items-center justify-center gap-1 mt-1">
+                  <Sparkles className="h-3.5 w-3.5 text-amber-600 animate-pulse" />
+                  <span className="text-[9px] font-black uppercase tracking-[0.3em] text-amber-800">
+                    La Reina de la Fiesta
+                  </span>
+                  <Sparkles className="h-3.5 w-3.5 text-amber-600 animate-pulse" />
+                </div>
+
+                {/* NOMBRE REINANTE CON ESTILO SCRIPT / SERIF ELEGANTEDE ALTO IMPACTO */}
+                <h2 className="my-1 font-serif italic text-3xl md:text-4xl font-extrabold tracking-wide bg-gradient-to-r from-amber-800 via-amber-600 to-amber-900 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(217,119,6,0.2)]">
+                  Merari Catalina
+                </h2>
+
+                <div className="h-0.5 w-24 mx-auto bg-gradient-to-r from-transparent via-amber-400 to-transparent rounded-full" />
+              </motion.div>
             </motion.div>
 
             {/* Ilustración Osito con Aureola Rotativa */}
@@ -336,7 +363,7 @@ export default function Invitacion() {
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.35, type: "spring", stiffness: 120 }}
-              className="relative my-4 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/90 p-4 shadow-xl ring-4 ring-amber-300/60 z-10"
+              className="relative my-2 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/90 p-4 shadow-xl ring-4 ring-amber-300/60 z-10"
             >
               <BearIllustration />
               <motion.div
@@ -353,16 +380,16 @@ export default function Invitacion() {
               transition={{ delay: 0.45 }}
               className="my-2 max-w-xs text-center font-serif text-xs italic leading-relaxed text-neutral-700 z-10"
             >
-              Será un día muy especial y queremos compartirlo con las personas más importantes en nuestras vidas.
+              Será un día lleno de magia, bendiciones y alegría. Queremos compartir este gran momento contigo.
             </motion.p>
 
             <motion.p
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 }}
-              className="mb-4 font-serif text-base italic font-extrabold text-amber-800 tracking-wide z-10"
+              className="mb-3 font-serif text-base italic font-extrabold text-amber-800 tracking-wide z-10"
             >
-              ¡Te esperamos!
+              ¡Te esperamos con los brazos abiertos!
             </motion.p>
 
             {/* TARJETAS DE FECHA Y HORARIOS (Tarjetas con relieve) */}
@@ -370,17 +397,17 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55 }}
-              className="my-3 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-5 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
+              className="my-2 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-4 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
             >
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
-                <Calendar className="mb-1.5 h-5 w-5 text-amber-700" />
+                <Calendar className="mb-1 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
                 <p className="my-0.5 font-serif text-2xl font-black text-amber-700">14</p>
                 <p className="text-[9px] font-semibold uppercase text-neutral-500">Noviembre 2025</p>
               </motion.div>
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
-                <Church className="mb-1.5 h-5 w-5 text-amber-700" />
+                <Church className="mb-1 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Bautizo</p>
                 <p className="text-[10px] font-extrabold text-amber-900">11:00 a.m.</p>
                 <p className="mt-1 text-[10px] font-medium text-neutral-600">Gante 5</p>
@@ -388,7 +415,7 @@ export default function Invitacion() {
               </motion.div>
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start px-1">
-                <PartyPopper className="mb-1.5 h-5 w-5 text-amber-700" />
+                <PartyPopper className="mb-1 h-5 w-5 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Cumpleaños</p>
                 <p className="text-[10px] font-extrabold text-amber-900">3:00 p.m.</p>
                 <p className="mt-1 text-[10px] font-medium text-neutral-600">Salón Flamingo</p>
@@ -400,7 +427,7 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.65 }}
-              className="my-3 w-full text-center z-20"
+              className="my-2.5 w-full text-center z-20"
             >
               <motion.a
                 whileHover={{ scale: 1.05, shadow: "0 15px 30px rgba(0,0,0,0.4)" }}
@@ -420,20 +447,20 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.75 }}
-              className="mt-2 w-full text-center z-10"
+              className="mt-1 w-full text-center z-10"
             >
-              <div className="my-2 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3.5 border-2 border-amber-300/50 shadow-md">
+              <div className="my-1.5 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
                 <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
-                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Nuestros papás <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
+                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Papás <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
-                <p className="mt-1 text-sm font-extrabold text-[#2A2421]">Lidia e Isai</p>
+                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Lidia e Isai</p>
               </div>
 
-              <div className="my-2 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3.5 border-2 border-amber-300/50 shadow-md">
+              <div className="my-1.5 rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-3 border-2 border-amber-300/50 shadow-md">
                 <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
-                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Padrinos <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
+                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Padrinos <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
                 </p>
-                <p className="mt-1 text-sm font-extrabold text-[#2A2421]">Teresa y Luis</p>
+                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Teresa y Luis</p>
               </div>
             </motion.div>
 
@@ -442,7 +469,7 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.85 }}
-              className="mt-4 flex flex-col items-center text-center z-20"
+              className="mt-3 flex flex-col items-center text-center z-20"
             >
               <p className="max-w-xs font-serif text-[11px] italic text-neutral-600 leading-relaxed font-medium">
                 Tu confirmación nos ayudará a organizar todo con mucho amor.
@@ -452,14 +479,14 @@ export default function Invitacion() {
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-3.5 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 px-9 py-3.5 text-xs font-black tracking-wider text-amber-100 shadow-2xl shadow-amber-900/40 transition-all border border-amber-400/40 cursor-pointer"
+                  className="mt-3 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 px-9 py-3.5 text-xs font-black tracking-wider text-amber-100 shadow-2xl shadow-amber-900/40 transition-all border border-amber-400/40 cursor-pointer"
                 >
                   <ClipboardList className="h-4 w-4 text-amber-200" />
                   <span>Confirmar Asistencia</span>
                 </motion.div>
               </Link>
 
-              <p className="mt-4 font-serif text-lg italic font-black text-amber-900">
+              <p className="mt-3 font-serif text-lg italic font-black text-amber-900">
                 ¡Gracias por acompañarnos!
               </p>
             </motion.div>
