@@ -255,10 +255,10 @@ export default function Invitacion() {
                 Con mucho amor te invitamos a la
               </p>
               <h1 className="font-serif text-lg md:text-xl font-black tracking-widest text-amber-950 uppercase my-1">
-                Celebración de mi primer año
+                Celebración de < br /> mi primer año
               </h1>
               <p className="font-serif text-xs md:text-sm font-bold tracking-wider text-amber-900 uppercase">
-                Bautizo
+                Y Bautizo
               </p>
 
               <div className="my-2 flex items-center justify-center gap-2">
@@ -310,7 +310,7 @@ export default function Invitacion() {
               className="my-4 flex flex-col items-center space-y-3 z-10 px-4 text-center"
             >
               <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
-                Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
+                Será un día lleno de magia y bendiciones. < br /> Queremos compartir este gran momento contigo.
               </p>
 
               <p className="font-serif text-sm italic font-extrabold text-amber-800 tracking-wide py-0.5">
