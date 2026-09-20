@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Sparkles, CheckCircle, Send, User, Users, Phone, Baby, Plus, Minus, AlertCircle, Ticket } from "lucide-react"
 
 // URL DE TU GOOGLE APPS SCRIPT
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_xYvZh06hkKm8OxbbPysI-dPbgKioel1KBI3MBOxwNHT9ddxfr_Fy1pfucJRA16s/exec"
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgA0a9mQodin7NoSLLepghlo-goitys60mPc9s0BcqPpoF_NKhcTOySKbmGHeZ4vMd/exec"
 
 const MAX_INVITADOS_TOTAL = 200
 
