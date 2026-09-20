@@ -365,7 +365,7 @@ export default function Invitacion() {
                   className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#2A2421] via-[#1F1A17] to-[#12100F] px-7 py-3 text-xs font-bold uppercase tracking-widest text-amber-100 shadow-2xl border-2 border-amber-400/45 transition-all"
                 >
                   <MapPin className="h-4 w-4 text-amber-400 animate-bounce" />
-                  <span>Ver Ubicaciones (Iglesia y Salón)</span>
+                  <span>Ver Ubicaciones </span>
                 </motion.button>
               ) : (
                 <motion.div
