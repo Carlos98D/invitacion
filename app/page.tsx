@@ -63,6 +63,7 @@ function GoldSparkles() {
 export default function Invitacion() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [showMapMenu, setShowMapMenu] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
@@ -115,7 +116,9 @@ export default function Invitacion() {
     }
   }
 
-  const locationUrl = `https://www.google.com/maps/dir//Salon+flamingo+Tultitlan,+Av.+Toluca+Esq,+La+Sarda%C3%B1a,+54090+Buenavista,+M%C3%A9x./@19.6083712,-99.1592448,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x85d1f77daf733af9:0xa27412d4f0116198!2m2!1d-99.1774046!2d19.5935291`
+  // URLs de las ubicaciones
+  const iglesiaUrl = "https://www.google.com/maps/place/IMMAR+La+Sant%C3%ADsima+Trinidad/@19.43325,-99.1397333,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f92cacfb8905:0xed6e39c7e7900d34!8m2!3d19.43325!4d-99.1397333!16s%2Fg%2F1tlkcqhb!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
+  const salonUrl = `https://www.google.com/maps/dir//Salon+flamingo+Tultitlan,+Av.+Toluca+Esq,+La+Sarda%C3%B1a,+54090+Buenavista,+M%C3%A9x./@19.6083712,-99.1592448,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x85d1f77daf733af9:0xa27412d4f0116198!2m2!1d-99.1774046!2d19.5935291`
 
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-[#0F0D0C] p-3 font-sans text-[#2A2421] md:p-6 overflow-hidden selection:bg-amber-300">
@@ -199,7 +202,6 @@ export default function Invitacion() {
                 className="relative my-6 flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
               >
                 <Image src="/oso.png" alt="Osito" width={160} height={160} className="object-contain" priority />
-                {/* Nombre corregido y subido para que quede bien centrado en el pergamino */}
                 <div className="absolute inset-x-0 bottom-[38%] flex justify-center">
                   <span className="font-serif text-[10px] font-black text-amber-950/80 bg-white/60 px-2 py-0.5 rounded-full shadow-sm tracking-wide">
                     Merari Catalina
@@ -268,7 +270,7 @@ export default function Invitacion() {
               </div>
             </motion.div>
 
-            {/* IMAGEN DEL OSITO CON EL NOMBRE EN DOS LÍNEAS Y MÁS GRANDE */}
+            {/* IMAGEN DEL OSITO */}
             <motion.div
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ 
@@ -348,24 +350,78 @@ export default function Invitacion() {
               </motion.div>
             </motion.div>
 
-            {/* BOTÓN DE MAPA */}
+            {/* MENÚ INTERACTIVO DE UBICACIONES */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="my-3 w-full text-center z-20"
+              className="my-3 w-full flex flex-col items-center z-20"
             >
-              <motion.a
-                whileHover={{ scale: 1.05, shadow: "0 15px 30px rgba(0,0,0,0.4)" }}
-                whileTap={{ scale: 0.95 }}
-                href={locationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#2A2421] via-[#1F1A17] to-[#12100F] px-7 py-3 text-xs font-bold uppercase tracking-widest text-amber-100 shadow-2xl border-2 border-amber-400/40 transition-all"
-              >
-                <MapPin className="h-4 w-4 text-amber-400 animate-bounce" />
-                <span>Ver Ubicación en Maps</span>
-              </motion.a>
+              {!showMapMenu ? (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowMapMenu(true)}
+                  className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#2A2421] via-[#1F1A17] to-[#12100F] px-7 py-3 text-xs font-bold uppercase tracking-widest text-amber-100 shadow-2xl border-2 border-amber-400/45 transition-all"
+                >
+                  <MapPin className="h-4 w-4 text-amber-400 animate-bounce" />
+                  <span>Ver Ubicaciones (Iglesia y Salón)</span>
+                </motion.button>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="w-full max-w-xs rounded-2xl bg-amber-50/95 border-2 border-amber-400/60 p-3 shadow-xl backdrop-blur-md flex flex-col gap-2"
+                >
+                  <div className="flex items-center justify-between border-b border-amber-200 pb-1.5 px-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-amber-950">Elige un destino:</span>
+                    <button 
+                      onClick={() => setShowMapMenu(false)}
+                      className="text-xs font-bold text-amber-900 hover:text-red-600 px-1 cursor-pointer"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  {/* Botón Iglesia */}
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href={iglesiaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-xl bg-white/80 p-2.5 border border-amber-200 shadow-sm transition-all hover:bg-amber-100/80"
+                  >
+                    <div className="flex items-center gap-2 text-left">
+                      <Church className="h-4 w-4 text-amber-700 shrink-0" />
+                      <div>
+                        <p className="text-[11px] font-bold text-amber-950">Ceremonia (Iglesia)</p>
+                        <p className="text-[9px] text-neutral-600">IMMAR La Santísima Trinidad</p>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-amber-800 underline">Ir →</span>
+                  </motion.a>
+
+                  {/* Botón Salón */}
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href={salonUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-xl bg-white/80 p-2.5 border border-amber-200 shadow-sm transition-all hover:bg-amber-100/80"
+                  >
+                    <div className="flex items-center gap-2 text-left">
+                      <PartyPopper className="h-4 w-4 text-amber-700 shrink-0" />
+                      <div>
+                        <p className="text-[11px] font-bold text-amber-950">Recepción (Salón)</p>
+                        <p className="text-[9px] text-neutral-600">Salón Flamingo, Tultitlán</p>
+                      </div>
+                    </div>
+                    <span className="text-[10px] font-bold text-amber-800 underline">Ir →</span>
+                  </motion.a>
+                </motion.div>
+              )}
             </motion.div>
 
             {/* PAPÁS Y PADRINOS */}
