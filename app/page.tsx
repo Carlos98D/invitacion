@@ -240,7 +240,7 @@ export default function Invitacion() {
               ✕ Cerrar
             </button>
 
-            {/* ENCABEZADO SUPERIOR */}
+            {/* ENCABEZADO SUPERIOR ACTUALIZADO */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -251,10 +251,10 @@ export default function Invitacion() {
                 Con mucho amor te invitamos a la
               </p>
               <h1 className="font-serif text-lg md:text-xl font-black tracking-widest text-amber-950 uppercase my-1">
-                Ceremonia y Recepción
+                Celebración de mi primer año
               </h1>
-              <p className="font-serif text-[11px] italic tracking-wider text-amber-900/60">
-                de nuestra pequeña
+              <p className="font-serif text-xs md:text-sm font-bold tracking-wider text-amber-900 uppercase">
+                Bautizo
               </p>
 
               <div className="my-2 flex items-center justify-center gap-2">
