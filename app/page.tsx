@@ -262,5 +262,68 @@ export default function Invitacion() {
               <p className="font-serif text-xs md:text-sm font-bold tracking-wider text-amber-900 uppercase">
                 Bautizo
               </p>
+            </motion.div>
 
-              <div
+            {/* FOTO PRINCIPAL / OSITO */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="relative my-4 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200 p-2 shadow-inner ring-4 ring-amber-300/50"
+            >
+              <Image src="/oso.png" alt="Merari Catalina" width={140} height={140} className="object-contain drop-shadow-md" />
+            </motion.div>
+
+            <div className="text-center mb-6">
+              <h2 className="font-serif text-2xl md:text-3xl font-black tracking-widest text-amber-950 uppercase">
+                Merari Catalina
+              </h2>
+              <p className="font-serif text-xs text-amber-900/80 tracking-widest mt-1">
+                Mis primeros pasos y bendiciones
+              </p>
+            </div>
+
+            {/* ITINERARIO Y DETALLES */}
+            <div className="w-full space-y-4 mb-6">
+              {/* Ceremonia */}
+              <div className="flex items-center gap-4 rounded-2xl bg-amber-50/80 p-4 border border-amber-200/60 shadow-sm">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-200 text-amber-900">
+                  <Church className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xs font-bold uppercase tracking-wider text-amber-950">Ceremonia Religiosa</h3>
+                  <p className="text-xs text-amber-900/80">Iglesia / Parroquia</p>
+                  <p className="text-xs font-bold text-amber-950 mt-0.5">12:00 PM</p>
+                </div>
+              </div>
+
+              {/* Recepción */}
+              <div className="flex items-center gap-4 rounded-2xl bg-amber-50/80 p-4 border border-amber-200/60 shadow-sm">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-200 text-amber-900">
+                  <PartyPopper className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-xs font-bold uppercase tracking-wider text-amber-950">Recepción / Salón</h3>
+                  <p className="text-xs text-amber-900/80">Salón Flamingo Tultitlán</p>
+                  <p className="text-xs font-bold text-amber-950 mt-0.5">02:30 PM</p>
+                </div>
+              </div>
+            </div>
+
+            {/* BOTÓN MAPA */}
+            <Link
+              href={locationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-lg transition-all hover:scale-[1.02] active:scale-95 mb-6"
+            >
+              <MapPin className="h-4 w-4 text-amber-200" />
+              <span>Ver Ubicación en Google Maps</span>
+            </Link>
+
+          </motion.main>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
