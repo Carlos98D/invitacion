@@ -193,14 +193,14 @@ export default function Invitacion() {
                 <BearPawIcon className="h-8 w-8" />
               </div>
 
-              {/* OSITO CON NOMBRE INTEGRADO EN EL SOBRE */}
               <motion.div
                 animate={{ scale: [1, 1.04, 1] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="relative my-6 flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
               >
                 <Image src="/oso.png" alt="Osito" width={160} height={160} className="object-contain" priority />
-                <div className="absolute inset-x-0 bottom-[15%] flex justify-center">
+                {/* Nombre corregido en el sobre (centrado verticalmente) */}
+                <div className="absolute inset-x-0 bottom-[21%] flex justify-center">
                   <span className="font-serif text-[10px] font-black text-amber-950/80 bg-white/60 px-2 py-0.5 rounded-full shadow-sm tracking-wide">
                     Merari Catalina
                   </span>
@@ -257,165 +257,4 @@ export default function Invitacion() {
               <h1 className="font-serif text-lg md:text-xl font-black tracking-widest text-amber-950 uppercase my-1">
                 Celebración de mi primer año
               </h1>
-              <p className="font-serif text-xs md:text-sm font-bold tracking-wider text-amber-900 uppercase">
-                Bautizo
-              </p>
-
-              <div className="my-2 flex items-center justify-center gap-2">
-                <div className="h-[1px] w-12 bg-amber-400/60" />
-                <Sparkles className="h-3 w-3 text-amber-600" />
-                <div className="h-[1px] w-12 bg-amber-400/60" />
-              </div>
-            </motion.div>
-
-            {/* IMAGEN DEL OSITO CON EL NOMBRE COMPLETO DENTRO */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                y: [0, -6, 0] 
-              }}
-              transition={{ 
-                opacity: { delay: 0.3 },
-                scale: { delay: 0.3, type: "spring", stiffness: 120 },
-                y: { repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: 0.4 } 
-              }}
-              className="relative my-1 flex flex-col items-center justify-center z-10 w-full"
-            >
-              <div className="relative w-48 h-40 md:w-56 md:h-48 flex items-center justify-center drop-shadow-md">
-                <Image 
-                  src="/oso.png" 
-                  alt="Osito con pergamino" 
-                  fill 
-                  className="object-contain"
-                  priority
-                />
-                <div className="absolute inset-x-0 top-[45%] flex items-center justify-center px-6 pt-1 pointer-events-none text-center">
-                  <span className="font-serif italic font-extrabold text-base md:text-lg tracking-wide bg-gradient-to-r from-amber-950 via-amber-800 to-amber-950 bg-clip-text text-transparent drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)] leading-tight">
-                    Merari Catalina
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* MENSAJE */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="my-5 flex flex-col items-center space-y-4 z-10 px-4 text-center"
-            >
-              <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
-                Será un día lleno de magia y bendiciones. Queremos compartir este gran momento contigo.
-              </p>
-
-              <p className="font-serif text-sm italic font-extrabold text-amber-800 tracking-wide py-1">
-                ¡Te esperamos con los brazos abiertos!
-              </p>
-            </motion.div>
-
-            {/* TARJETAS DE FECHA Y HORARIOS */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="my-2 grid w-full grid-cols-3 gap-2 border-y-2 border-amber-300/80 py-3 text-center bg-gradient-to-b from-amber-50/60 to-amber-100/30 rounded-2xl shadow-inner z-10"
-            >
-              <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
-                <Calendar className="mb-1 h-4 w-4 text-amber-700" />
-                <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
-                <p className="my-0.5 font-serif text-xl font-black text-amber-700">28</p>
-                <p className="text-[9px] font-semibold uppercase text-neutral-500">Nov 2025</p>
-              </motion.div>
-
-              <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
-                <Church className="mb-1 h-4 w-4 text-amber-700" />
-                <p className="text-[11px] font-bold text-[#2A2421]">Ceremonia</p>
-                <p className="text-[10px] font-extrabold text-amber-900 mt-0.5">11:00 a.m.</p>
-                <p className="mt-1 text-[10px] font-medium text-neutral-600">Gante 5</p>
-                <p className="text-[10px] font-medium text-neutral-600">CDMX</p>
-              </motion.div>
-
-              <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start px-1">
-                <PartyPopper className="mb-1 h-4 w-4 text-amber-700" />
-                <p className="text-[11px] font-bold text-[#2A2421]">Recepción</p>
-                <p className="text-[10px] font-extrabold text-amber-900 mt-0.5">3:00 p.m.</p>
-                <p className="mt-1 text-[10px] font-medium text-neutral-600">Salón Flamingo</p>
-              </motion.div>
-            </motion.div>
-
-            {/* BOTÓN DE MAPA */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="my-3 w-full text-center z-20"
-            >
-              <motion.a
-                whileHover={{ scale: 1.05, shadow: "0 15px 30px rgba(0,0,0,0.4)" }}
-                whileTap={{ scale: 0.95 }}
-                href={locationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#2A2421] via-[#1F1A17] to-[#12100F] px-7 py-3 text-xs font-bold uppercase tracking-widest text-amber-100 shadow-2xl border-2 border-amber-400/40 transition-all"
-              >
-                <MapPin className="h-4 w-4 text-amber-400 animate-bounce" />
-                <span>Ver Ubicación en Maps</span>
-              </motion.a>
-            </motion.div>
-
-            {/* PAPÁS Y PADRINOS */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="my-2 w-full text-center z-10 space-y-2"
-            >
-              <div className="rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-2.5 border-2 border-amber-300/50 shadow-md">
-                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
-                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Papás <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
-                </p>
-                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Isai Lino y Lidia Moreno</p>
-              </div>
-
-              <div className="rounded-2xl bg-gradient-to-r from-amber-100/70 via-amber-50 to-amber-100/70 p-2.5 border-2 border-amber-300/50 shadow-md">
-                <p className="flex items-center justify-center gap-1.5 font-serif text-xs italic font-bold text-amber-900">
-                  <BearPawIcon className="h-3.5 w-3.5 text-amber-700" /> Mis Padrinos <BearPawIcon className="h-3.5 w-3.5 text-amber-700" />
-                </p>
-                <p className="mt-0.5 text-sm font-extrabold text-[#2A2421]">Teresa Barcenas y Luis Moreno</p>
-              </div>
-            </motion.div>
-
-            {/* BOTÓN DE ASISTENCIA Y CIERRE */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="mt-2 mb-2 flex flex-col items-center text-center z-20"
-            >
-              <p className="max-w-xs font-serif text-[11px] italic text-neutral-600 leading-relaxed font-medium">
-                Tu confirmación nos ayudará a organizar todo con mucho amor.
-              </p>
-
-              <Link href="/formulario">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-2.5 inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 px-8 py-3 text-xs font-black tracking-wider text-amber-100 shadow-2xl shadow-amber-900/40 transition-all border border-amber-400/40 cursor-pointer"
-                >
-                  <ClipboardList className="h-4 w-4 text-amber-200" />
-                  <span>Confirmar Asistencia</span>
-                </motion.div>
-              </Link>
-
-              <p className="mt-3 font-serif text-base italic font-black text-amber-900">
-                ¡Gracias por acompañarnos!
-              </p>
-            </motion.div>
-          </motion.main>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-}
+              <p className="font-serif text-xs md:text-sm font-bold tracking-wider text-amber-
