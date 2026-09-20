@@ -19,6 +19,7 @@ export default function Page() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submissionState, setSubmissionState] = useState<"idle" | "success" | "full" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
+  const [validationError, setValidationError] = useState("")
 
   const totalInvitadosActuales = formData.adultos + formData.ninos
 
@@ -48,6 +49,32 @@ export default function Page() {
 
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault()
+    setValidationError("")
+
+    const nombreLimpio = formData.nombre.trim()
+    const telefonoLimpio = formData.telefono.trim()
+
+    // Validar que no estén vacíos o con puros espacios
+    if (!nombreLimpio || !telefonoLimpio) {
+      setValidationError("Por favor, completa todos los campos sin dejar espacios en blanco.")
+      return
+    }
+
+    // Validar nombre (mínimo 3 caracteres, que contenga letras)
+    const regexNombre = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]{3,}$/
+    if (!regexNombre.test(nombreLimpio)) {
+      setValidationError("Por favor, introduce un nombre válido (mínimo 3 letras y sin caracteres extraños).")
+      return
+    }
+
+    // Validar teléfono (solo números, entre 7 y 15 dígitos permitiendo espacios o guiones opcionales)
+    const telefonoDigitos = telefonoLimpio.replace(/[\s-]/g, "")
+    const regexTelefono = /^\d{7,15}$/
+    if (!regexTelefono.test(telefonoDigitos)) {
+      setValidationError("Por favor, introduce un número de teléfono válido (entre 7 y 15 dígitos).")
+      return
+    }
+
     setIsSubmitting(true)
     setErrorMessage("")
 
@@ -55,7 +82,12 @@ export default function Page() {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          nombre: nombreLimpio,
+          adultos: formData.adultos,
+          ninos: formData.ninos,
+          telefono: telefonoLimpio,
+        }),
       })
 
       const result = await response.json()
@@ -116,7 +148,7 @@ export default function Page() {
           </motion.div>
         )}
 
-        {/* SI EL CUPO ESTÁ LLENO (Llegó a los 200) */}
+        {/* SI EL CUPO ESTÁ LLENO */}
         {submissionState === "full" && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -165,6 +197,13 @@ export default function Page() {
         {/* FORMULARIO */}
         {submissionState === "idle" && (
           <form onSubmit={handleSubmitForm} className="flex flex-col gap-5 text-left">
+            {validationError && (
+              <div className="rounded-xl bg-red-100 border border-red-300 p-3 text-[11px] font-semibold text-red-800 flex items-center gap-2">
+                <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+                <span>{validationError}</span>
+              </div>
+            )}
+
             {/* NOMBRE */}
             <div>
               <label className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-1 flex items-center gap-1.5">
@@ -172,10 +211,12 @@ export default function Page() {
               </label>
               <input
                 type="text"
-                required
                 placeholder="Ej. María López"
                 value={formData.nombre}
-                onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, nombre: e.target.value })
+                  if (validationError) setValidationError("")
+                }}
                 className="w-full rounded-xl border border-amber-300/80 bg-white/90 px-3.5 py-2.5 text-xs text-[#2A2421] placeholder-neutral-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-300/50 shadow-inner transition-all"
               />
             </div>
@@ -248,10 +289,12 @@ export default function Page() {
               </label>
               <input
                 type="tel"
-                required
                 placeholder="Ej. 55 1234 5678"
                 value={formData.telefono}
-                onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, telefono: e.target.value })
+                  if (validationError) setValidationError("")
+                }}
                 className="w-full rounded-xl border border-amber-300/80 bg-white/90 px-3.5 py-2.5 text-xs text-[#2A2421] placeholder-neutral-400 focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-300/50 shadow-inner transition-all"
               />
             </div>
