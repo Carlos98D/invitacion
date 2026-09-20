@@ -199,8 +199,8 @@ export default function Invitacion() {
                 className="relative my-6 flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
               >
                 <Image src="/oso.png" alt="Osito" width={160} height={160} className="object-contain" priority />
-                {/* Nombre corregido en el sobre (subido para centrarse bien) */}
-                <div className="absolute inset-x-0 bottom-[21%] flex justify-center">
+                {/* Nombre corregido y subido para que quede bien centrado en el pergamino */}
+                <div className="absolute inset-x-0 bottom-[38%] flex justify-center">
                   <span className="font-serif text-[10px] font-black text-amber-950/80 bg-white/60 px-2 py-0.5 rounded-full shadow-sm tracking-wide">
                     Merari Catalina
                   </span>
