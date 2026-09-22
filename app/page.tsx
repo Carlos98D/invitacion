@@ -331,7 +331,7 @@ export default function Invitacion() {
                 <Calendar className="mb-1 h-4 w-4 text-amber-700" />
                 <p className="text-[11px] font-bold text-[#2A2421]">Sábado</p>
                 <p className="my-0.5 font-serif text-xl font-black text-amber-700">28</p>
-                <p className="text-[9px] font-semibold uppercase text-neutral-500">Nov 2025</p>
+                <p className="text-[9px] font-semibold uppercase text-neutral-500">Nov 2026</p>
               </motion.div>
 
               <motion.div whileHover={{ y: -4, scale: 1.02 }} className="flex flex-col items-center justify-start border-r border-amber-300/60 px-1">
