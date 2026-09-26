@@ -60,6 +60,55 @@ function GoldSparkles() {
   )
 }
 
+// Componente de Cuenta Regresiva
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  useEffect(() => {
+    const targetDate = new Date("2026-11-28T11:00:00").getTime()
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime()
+      const difference = targetDate - now
+
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        })
+      }
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <div className="my-3 flex items-center justify-center gap-2">
+      <div className="flex flex-col items-center rounded-xl bg-amber-900/10 px-2.5 py-1.5 border border-amber-300/40 min-w-[50px]">
+        <span className="font-serif text-base font-black text-amber-950">{timeLeft.days}</span>
+        <span className="text-[9px] uppercase tracking-wider text-amber-900/70 font-bold">Días</span>
+      </div>
+      <span className="font-bold text-amber-800">:</span>
+      <div className="flex flex-col items-center rounded-xl bg-amber-900/10 px-2.5 py-1.5 border border-amber-300/40 min-w-[50px]">
+        <span className="font-serif text-base font-black text-amber-950">{timeLeft.hours}</span>
+        <span className="text-[9px] uppercase tracking-wider text-amber-900/70 font-bold">Hrs</span>
+      </div>
+      <span className="font-bold text-amber-800">:</span>
+      <div className="flex flex-col items-center rounded-xl bg-amber-900/10 px-2.5 py-1.5 border border-amber-300/40 min-w-[50px]">
+        <span className="font-serif text-base font-black text-amber-950">{timeLeft.minutes}</span>
+        <span className="text-[9px] uppercase tracking-wider text-amber-900/70 font-bold">Min</span>
+      </div>
+      <span className="font-bold text-amber-800">:</span>
+      <div className="flex flex-col items-center rounded-xl bg-amber-900/10 px-2.5 py-1.5 border border-amber-300/40 min-w-[50px]">
+        <span className="font-serif text-base font-black text-amber-950">{timeLeft.seconds}</span>
+        <span className="text-[9px] uppercase tracking-wider text-amber-900/70 font-bold">Seg</span>
+      </div>
+    </div>
+  )
+}
+
 export default function Invitacion() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -116,7 +165,6 @@ export default function Invitacion() {
     }
   }
 
-  // URLs de las ubicaciones
   const iglesiaUrl = "https://www.google.com/maps/place/IMMAR+La+Sant%C3%ADsima+Trinidad/@19.43325,-99.1397333,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f92cacfb8905:0xed6e39c7e7900d34!8m2!3d19.43325!4d-99.1397333!16s%2Fg%2F1tlkcqhb!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D"
   const salonUrl = `https://www.google.com/maps/dir//Salon+flamingo+Tultitlan,+Av.+Toluca+Esq,+La+Sarda%C3%B1a,+54090+Buenavista,+M%C3%A9x./@19.6083712,-99.1592448,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x85d1f77daf733af9:0xa27412d4f0116198!2m2!1d-99.1774046!2d19.5935291`
 
@@ -171,7 +219,7 @@ export default function Invitacion() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-              className="mb-6 flex items-center gap-2.5 font-serif text-xs tracking-[0.4em] uppercase text-amber-300 drop-shadow-[0_2px_8px_rgba(245,158,11,0.5)]"
+              className="mb-4 flex items-center gap-2.5 font-serif text-xs tracking-[0.4em] uppercase text-amber-300 drop-shadow-[0_2px_8px_rgba(245,158,11,0.5)]"
             >
               <Sparkles className="h-4 w-4 text-amber-400 animate-spin" />
               <span>Invitación Exclusiva</span>
@@ -182,7 +230,7 @@ export default function Invitacion() {
               whileHover={{ y: -8, scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               onClick={handleOpenEnvelope}
-              className="group relative flex w-full max-w-sm flex-col items-center overflow-hidden rounded-[2.5rem] border-2 border-amber-400/50 bg-gradient-to-b from-[#FAF8F5] via-[#F3ECE3] to-[#E2D2C0] p-8 text-center shadow-[0_35px_90px_rgba(217,119,6,0.25)] transition-all duration-500 hover:border-amber-300"
+              className="group relative flex w-full max-w-sm flex-col items-center overflow-hidden rounded-[2.5rem] border-2 border-amber-400/50 bg-gradient-to-b from-[#FAF8F5] via-[#F3ECE3] to-[#E2D2C0] p-6 text-center shadow-[0_35px_90px_rgba(217,119,6,0.25)] transition-all duration-500 hover:border-amber-300"
             >
               <CornerOrnament className="absolute top-2 left-2" />
               <CornerOrnament className="absolute top-2 right-2 rotate-90" />
@@ -199,9 +247,9 @@ export default function Invitacion() {
               <motion.div
                 animate={{ scale: [1, 1.04, 1] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="relative my-6 flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
+                className="relative my-4 flex h-36 w-36 items-center justify-center rounded-full bg-gradient-to-b from-amber-100 to-amber-200/80 p-3 shadow-[inset_0_2px_10px_rgba(0,0,0,0.15)] ring-4 ring-amber-300/40 overflow-hidden"
               >
-                <Image src="/oso.png" alt="Osito" width={160} height={160} className="object-contain" priority />
+                <Image src="/oso.png" alt="Osito" width={140} height={140} className="object-contain" priority />
                 <div className="absolute inset-x-0 bottom-[38%] flex justify-center">
                   <span className="font-serif text-[10px] font-black text-amber-950/80 bg-white/60 px-2 py-0.5 rounded-full shadow-sm tracking-wide">
                     Merari Catalina
@@ -213,11 +261,15 @@ export default function Invitacion() {
                 Bautizo y <br /> Primer Año
               </p>
               
-              <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-amber-900/60 mt-3">
-                De nuestra pequeña
-              </p>
+              {/* Cuenta regresiva agregada en el sobre */}
+              <div className="w-full mt-2">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-900/80">
+                  Faltan para la gran fiesta:
+                </p>
+                <CountdownTimer />
+              </div>
 
-              <div className="mt-7 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3.5 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
+              <div className="mt-4 flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-900 px-9 py-3 text-xs font-bold tracking-widest uppercase text-amber-100 shadow-2xl transition-all duration-300 group-hover:scale-105 group-hover:from-amber-500 group-hover:to-amber-800">
                 <MailOpen className="h-4 w-4 text-amber-200" />
                 <span>Abrir Invitación</span>
               </div>
@@ -309,14 +361,14 @@ export default function Invitacion() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="my-4 flex flex-col items-center space-y-3 z-10 px-4 text-center"
+              className="my-3 flex flex-col items-center space-y-2 z-10 px-4 text-center"
             >
               <p className="max-w-xs font-serif text-xs italic leading-relaxed text-neutral-700">
                 Será un día lleno de magia y bendiciones. < br /> Queremos compartir este gran momento contigo.
               </p>
 
-              <p className="font-serif text-sm italic font-extrabold text-amber-800 tracking-wide py-0.5">
-                ¡Te esperamos con los brazos abiertos!
+              <p className="font-serif text-xs italic font-extrabold text-amber-800 tracking-wide">
+                ¡No olvides registrar tu lugar con anticipación!
               </p>
             </motion.div>
 
@@ -454,7 +506,7 @@ export default function Invitacion() {
               className="mt-2 mb-2 flex flex-col items-center text-center z-20"
             >
               <p className="max-w-xs font-serif text-[11px] italic text-neutral-600 leading-relaxed font-medium">
-                Tu confirmación nos ayudará a organizar todo con mucho amor.
+                Tu confirmación y registro de lugar nos ayudará a organizar todo con mucho amor.
               </p>
 
               <Link href="/formulario">
@@ -464,7 +516,7 @@ export default function Invitacion() {
                   className="mt-2.5 inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-amber-600 via-amber-700 to-amber-800 px-8 py-3 text-xs font-black tracking-wider text-amber-100 shadow-2xl shadow-amber-900/40 transition-all border border-amber-400/40 cursor-pointer"
                 >
                   <ClipboardList className="h-4 w-4 text-amber-200" />
-                  <span>Confirmar Asistencia</span>
+                  <span>Registrar tu Lugar / Asistencia</span>
                 </motion.div>
               </Link>
 
